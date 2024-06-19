@@ -1,0 +1,161 @@
+on early-init
+    symlink /data/tombstones /tombstones
+
+    mkdir /carrier 0770 system system
+    chown system system /firmware/image
+    mkdir /firmware/adsp 0771 system system
+    mkdir /firmware/radio 0771 system system
+    mkdir /firmware/wcnss 0771 system system
+    mkdir /firmware/wsd 0500 rfs rfs
+    mkdir /system 0777 root root
+
+    #mount debugfs /sys/kernel/debug
+    #chmod 0755 /sys/kernel/debug
+ 
+    #symlink /dev/pn544 /dev/pn54x
+ 
+on fs
+    wait /dev/block/bootdevice
+    wait /dev/device-mapper
+    mount_all fstab.a16
+    swapon_all fstab.a16
+    write /proc/sys/vm/swappiness 100
+
+ # Process reclaim
+    write /sys/module/process_reclaim/parameters/enable_process_reclaim 1
+    write /sys/module/process_reclaim/parameters/pressure_min 10
+    write /sys/module/process_reclaim/parameters/per_swap_size 1024
+
+    write /sys/module/process_reclaim/parameters/pressure_max 70
+    write /sys/module/process_reclaim/parameters/swap_opt_eff 30
+
+    wait /dev/block/bootdevice/by-name/misc
+    #inithdf /proc/driver/hdf
+
+    #write /sys/kernel/boot_adsp/boot 1
+
+on post-fs-data
+    # Create directory for tombstone
+    mkdir /data/tombstones 0771 system system
+    mkdir /tombstones/modem 0771 system system
+    mkdir /tombstones/lpass 0771 system system
+    mkdir /tombstones/wcnss 0771 system system
+    mkdir /tombstones/dsps 0771 system system
+    
+    mkdir /persist/data/sfs 0700 system system
+    mkdir /persist/data/tz 0700 system system
+    mkdir /persist/tee 0700 system system
+    
+    mkdir /data/app/mcRegistry 0775 system system
+    symlink /persist/tee/00000000.authtokcont.backup /data/app/mcRegistry/00000000.authtokcont.backup
+    export MC_AUTH_TOKEN_PATH /data/app/mcRegistry
+
+# Create directory for audio
+    mkdir /data/misc/dts 0770 media audio
+
+#start camera server as daemon
+service qcamerasvr /system/bin/mm-qcamera-daemon
+    class main
+    user camera
+    group camera system inet input graphics
+
+on init
+   write /sys/module/qpnp_rtc/parameters/poweron_alarm 1
+   export LD_PRELOAD "liblog_htc.so"
+     
+# Allow usb charging to be disabled peristently
+on property:persist.usb.chgdisabled=1
+    write /sys/class/power_supply/battery/charging_enabled 0
+
+on property:persist.usb.chgdisabled=0
+    write /sys/class/power_supply/battery/charging_enabled 1
+
+service qrngp /system/bin/qrngp -f
+   class main
+   user root
+   group root
+   oneshot
+   disabled
+
+on property:sys.boot_completed=1
+   start qrngp
+
+service qseecomd /system/bin/qseecomd
+   class core
+   user root
+   group root
+
+service perfd /system/vendor/bin/perfd
+   class main
+   user root
+   disabled
+
+service thermal-engine /system/vendor/bin/thermal-engine
+   class main
+   user root
+   socket thermal-send-client stream 0666 system system
+   socket thermal-recv-client stream 0660 system system
+   socket thermal-recv-passive-client stream 0666 system system
+   group root
+
+service time_daemon /system/bin/time_daemon
+   class late_start
+   user root
+   group root
+
+service audiod /system/bin/audiod
+   class late_start
+   user system
+   group system
+
+on charger
+   wait /dev/block/bootdevice/by-name/system
+   mount ext4 /dev/block/bootdevice/by-name/system /system ro barrier=1
+   chown root system /sys/class/power_supply/bms/current_now
+   chown root system /sys/class/power_supply/bms/voltage_ocv
+   chmod 0664 /sys/class/power_supply/bms/current_now
+   chmod 0664 /sys/class/power_supply/bms/voltage_ocv
+   start vm_bms
+   load_all_props
+   start qcom-post-boot
+
+on boot
+    start rmt_storage
+    insmod /system/lib/modules/adsprpc.ko
+    write /proc/sys/vm/dirty_ratio  5
+    write /proc/sys/vm/dirty_background_ratio  1
+
+service wcnss-service /system/bin/wcnss_service
+    class late_start
+    user system
+    group system wifi radio
+    oneshot
+
+service per_mgr /system/bin/pm-service
+    class core
+    user system
+    group system net_raw
+
+on property:init.svc.surfaceflinger=stopped
+    stop ppd
+
+on property:init.svc.surfaceflinger=running
+    start ppd
+
+on property:sys.mobicore.enable=true
+    start mobicoreloader
+
+service mobicoreloader /system/bin/sh /system/bin/mobicore-startup.sh
+    class late_start
+    user root
+    oneshot
+    disabled
+
+on property:sys.mobicore.daemon=true
+    start mobicore
+
+service mobicore /system/bin/mcDriverDaemon -b
+    user system
+    class main
+    oneshot
+    disabled

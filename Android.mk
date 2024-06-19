@@ -7,14 +7,14 @@ include $(call all-makefiles-under,$(LOCAL_PATH))
 include $(CLEAR_VARS)
 
 KEYMASTER_IMAGES := \
-    keymaste.b00 keymaste.b01 keymaste.b02 keymaste.b03 keymaste.mdt
+    keymaster.b00 keymaster.b01 keymaster.b02 keymaster.b03 keymaster.mdt
 
 KEYMASTER_SYMLINKS := $(addprefix $(TARGET_ROOT_OUT)/firmware/image/,$(notdir $(KEYMASTER_IMAGES)))
 $(KEYMASTER_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 	@echo "Keymaster firmware link: $@"
 	@mkdir -p $(dir $@)
 	@rm -rf $@
-	$(hide) ln -sf /etc/firmware/$(notdir $@) $@
+	$(hide) ln -sf /vendor/firmware/$(notdir $@) $@
 
 ALL_DEFAULT_INSTALLED_MODULES += $(KEYMASTER_SYMLINKS)
 
@@ -30,23 +30,11 @@ $(MBA_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 
 ALL_DEFAULT_INSTALLED_MODULES += $(MBA_SYMLINKS)
 
-MISC_IMAGES := \
-    radiover.cfg version.cfg
-
-MISC_SYMLINKS := $(addprefix $(TARGET_ROOT_OUT)/firmware/image/,$(notdir $(MISC_IMAGES)))
-$(MISC_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
-	@echo "Misc firmware link: $@"
-	@mkdir -p $(dir $@)
-	@rm -rf $@
-	$(hide) ln -sf /firmware/radio/$(notdir $@) $@
-
-ALL_DEFAULT_INSTALLED_MODULES += $(MISC_SYMLINKS)
-
 MODEM_IMAGES := \
     modem.b00 modem.b01 modem.b02 modem.b03 modem.b05 modem.b06 \
     modem.b07 modem.b08 modem.b09 modem.b10 modem.b11 modem.b12 \
     modem.b13 modem.b14 modem.b15 modem.b16 modem.b19 modem.b20 \
-    modem.b21 modem.b22 modem.b23 modem.b24 modem.mdt
+    modem.b21 modem.b22 modem.b23 modem.b24 modem.mdt radiover.cfg
 
 MODEM_SYMLINKS := $(addprefix $(TARGET_ROOT_OUT)/firmware/image/,$(notdir $(MODEM_IMAGES)))
 $(MODEM_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
@@ -93,5 +81,11 @@ $(RFS_MPSS_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 	$(hide) ln -sf /persist/rfs/shared $@/shared
 
 ALL_DEFAULT_INSTALLED_MODULES += $(RFS_MPSS_SYMLINKS)
+
+# Create a link for the WCNSS config file, which ends up as a writable
+# # version in /data/misc/wifi
+#$(shell mkdir -p $(TARGET_OUT)/etc/firmware/wlan/prima; \
+#    ln -sf /data/misc/wifi/WCNSS_qcom_cfg.ini \
+#	    $(TARGET_OUT)/etc/firmware/wlan/prima/WCNSS_qcom_cfg.ini)
 
 endif
