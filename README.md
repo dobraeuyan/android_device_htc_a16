@@ -18,4 +18,4 @@ Rear Camera  | 8 MP
 Front Camera | 5 MP
 Release Month | March 2016
 
-![HTC Desire 530](https://fdn2.gsmarena.com/vv/pics/htc/htc-a16-desire-530-1.jpg "Lenovo Tab 10")
+![HTC Desire 530](https://fdn2.gsmarena.com/vv/pics/htc/htc-a16-desire-530-1.jpg "HTC Desire 530")
