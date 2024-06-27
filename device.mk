@@ -1,26 +1,3 @@
-#
-# Copyright (C) 2016 The CyanogenMod Project
-# Copyright (C) 2017 The LineageOS Project
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#      http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-#
-
-#DEVICE_PACKAGE_OVERLAYS := $(LOCAL_PATH)/overlay
-
-ifeq ($(TARGET_PRODUCT),a16)
-TARGET_USES_QCA_NFC := true
-endif
-
 $(call inherit-product, frameworks/native/build/phone-hdpi-2048-dalvik-heap.mk)
 
 #ANT+ stack
@@ -86,6 +63,11 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
     frameworks/native/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml
+
+# Dalvik
+PRODUCT_PROPERTY_OVERRIDES += \
+       dalvik.vm.heapgrowthlimit=128m \
+       dalvik.vm.heapminfree=6m
 
 # Display
 PRODUCT_PACKAGES += \
@@ -215,16 +197,10 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.min_freq_0=800000
-
-# RAM tweaks
-PRODUCT_PROPERTY_OVERRIDES += \
-       dalvik.vm.heapgrowthlimit=128m \
-       dalvik.vm.heapminfree=6m
        
 # RIL
 PRODUCT_PACKAGES += \
-    libcnefeatureconfig \
-    libhtcril_db
+    libcnefeatureconfig
     
 # Sensors
 PRODUCT_COPY_FILES += \
@@ -258,17 +234,16 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
     frameworks/native/data/etc/android.hardware.usb.host.xml:system/etc/permissions/android.hardware.usb.host.xml \
-    
+
 # WiFI
 PRODUCT_PACKAGES += \
-    libqsap_sdk \
-    libQWiFiSoftApCfg \
+    wcnss_service \
+    libwifi-hal-qcom \
     libwcnss_qmi \
-    libwpa_client \
     hostapd \
+    libwpa_client \
     wpa_supplicant \
-    wpa_supplicant.conf \
-    wcnss_service
+    wpa_supplicant.conf
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml \

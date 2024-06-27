@@ -1,5 +1,5 @@
 #!/system/bin/sh
-# Copyright (c) 2013, The Linux Foundation. All rights reserved.
+#Copyright (c) 2011-2012, The Linux Foundation. All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -8,7 +8,7 @@
 #     * Redistributions in binary form must reproduce the above copyright
 #       notice, this list of conditions and the following disclaimer in the
 #       documentation and/or other materials provided with the distribution.
-#     * Neither the name of Linux Foundation nor
+#     * Neither the name of The Linux Foundation nor
 #       the names of its contributors may be used to endorse or promote
 #       products derived from this software without specific prior written
 #       permission.
@@ -26,8 +26,16 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
-baseband=`getprop ro.baseband`
-if [ "$baseband" = "mdm" ] || [ "$baseband" = "mdm2" ]; then
-	start mdm_helper
-fi
+LOG_DIR="/data/hcidump/"
+LOG_TAG="hcidump"
+LOG_FILE=`date +%Y%m%d%H%M%S`.cfa
 
+logv ()
+{
+  /system/bin/log -t $LOG_TAG -p v "$LOG_NAME $@"
+}
+
+mkdir $LOG_DIR
+logv "Starting hcidump to $LOG_DIR$LOG_FILE"
+/system/xbin/hcidump -xw $LOG_DIR$LOG_FILE &
+/system/bin/logwrapper /system/xbin/hcidump -xt

@@ -1,18 +1,3 @@
-# Copyright (C) 2011 The Android Open-Source Project
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#      http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-#
-
 DEVICE_PATH := device/htc/a16
 
 # ANT+
@@ -25,16 +10,17 @@ TARGET_CPU_ABI  := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 TARGET_CPU_VARIANT := cortex-a7
 
-ENABLE_CPUSETS := true
-
 BOARD_VENDOR := htc
 
 # Audio
-USE_XML_AUDIO_POLICY_CONF := 1
+#USE_XML_AUDIO_POLICY_CONF := 1
 BOARD_USES_ALSA_AUDIO := true
-BOARD_SUPPORTS_SOUND_TRIGGER := true
-USE_CAMERA_STUB := true
+BOARD_SUPPORTS_SOUND_TRIGGER := false
 TARGET_ENABLE_QC_AV_ENHANCEMENTS := true
+
+# Bionic
+TARGET_LD_SHIM_LIBS := /system/lib/libBeautyChat.so|/system/lib/libshim_camera.so \
+    /system/lib/liblog.so|/system/lib/liblog_htc.so
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
@@ -48,6 +34,9 @@ TARGET_BOARD_PLATFORM_GPU := qcom-adreno304
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := MSM8909
 TARGET_NO_BOOTLOADER := true
+
+# Camera
+USE_CAMERA_STUB := true
 
 # Cryptfs_hw
 TARGET_CRYPTFS_HW_PATH := vendor/qcom/opensource/cryptfs_hw
@@ -63,11 +52,13 @@ TARGET_CRYPTFS_HW_PATH := vendor/qcom/opensource/cryptfs_hw
 # Display
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 TARGET_FORCE_HWC_FOR_VIRTUAL_DISPLAYS := true
+TARGET_HARDWARE_3D := false
+TARGET_HAVE_HDMI_OUT := false
 TARGET_USES_C2D_COMPOSITION := false
 TARGET_USES_ION := true
-TARGET_HAVE_HDMI_OUT := false
+TARGET_USES_NEW_ION_API :=true
+TARGET_USES_QCOM_BSP := true
 TARGET_USES_PCI_RCS := false
-TARGET_HARDWARE_3D := false
 TARGET_CONTINUOUS_SPLASH_ENABLED := true
 USE_OPENGL_RENDERER := true
 
@@ -121,10 +112,8 @@ BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_TAGS_OFFSET := 0x01e00000
 BOARD_RAMDISK_OFFSET := 0x02000000
 BOARD_MKBOOTIMG_ARGS :=  --ramdisk_offset $(BOARD_RAMDISK_OFFSET) --tags_offset $(BOARD_KERNEL_TAGS_OFFSET) --dt $(DEVICE_PATH)/dt.img --board boot:0
-BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci lpm_levels.sleep_disabled=1 earlyprintk vmalloc=400m androidboot.hardware=a16 androidboot.selinux=permissive 
+BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci lpm_levels.sleep_disabled=1 earlyprintk vmalloc=400m androidboot.hardware=htc_a16 androidboot.selinux=permissive
 BOARD_NAME := boot:0
-
-#BOARD_KERNEL_SEPARATED_DT := true
 
 # Keymaster
 TARGET_PROVIDES_KEYMASTER := true
@@ -152,8 +141,6 @@ TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
 
 # Protobuf
 PROTOBUF_SUPPORTED := false
-TARGET_USES_NEW_ION_API :=true
-TARGET_USES_QCOM_BSP := true
 
 # Qualcomm
 BOARD_USES_QCOM_HARDWARE := true
@@ -172,7 +159,7 @@ include device/qcom/sepolicy/sepolicy.mk
 #BOARD_SEPOLICY_DIRS += \
 #    $(DEVICE_PATH)/sepolicy
     
-# Enable sensor multi HAL
+# Sensors
 USE_SENSOR_MULTI_HAL := true
 
 # Widevine
@@ -192,6 +179,13 @@ TARGET_USES_WCNSS_CTRL := true
 TARGET_USES_QCOM_WCNSS_QMI := true
 WIFI_DRIVER_FW_PATH_STA          := "sta"
 WIFI_DRIVER_FW_PATH_AP           := "ap"
+
+
+#BOARD_WLAN_DEVICE                := qcwcn
+#BOARD_WPA_SUPPLICANT_DRIVER      := NL80211
+#WPA_SUPPLICANT_VERSION           := VER_0_8_X
+#WIFI_DRIVER_FW_PATH_STA          := "sta"
+#WIFI_DRIVER_FW_PATH_AP           := "ap"
 
 # OTA
 TARGET_OTA_ASSERT_DEVICE := a16,16uhl,a16whl,a16wl,a16ul,htc_a16uhl,htc_a16whl,htc_a16wl,htc_a16ul

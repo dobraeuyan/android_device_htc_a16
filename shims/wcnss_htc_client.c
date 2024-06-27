@@ -14,8 +14,6 @@
  * limitations under the License.
  */
 
-//#define LOG_NDEBUG 0
-
 #define LOG_TAG "wcnss_htc"
 
 #define SUCCESS 0
@@ -35,7 +33,6 @@
 
 int wcnss_init_qmi(void)
 {
-    /* empty */
     return SUCCESS;
 }
 
@@ -80,5 +77,4 @@ int wcnss_qmi_get_wlan_address(unsigned char *pBdAddr)
 
 void wcnss_qmi_deinit(void)
 {
-    /* empty */
 }

@@ -1,5 +1,5 @@
 #!/system/bin/sh
-# Copyright (c) 2013, The Linux Foundation. All rights reserved.
+# Copyright (c) 2014, The Linux Foundation. All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -8,7 +8,7 @@
 #     * Redistributions in binary form must reproduce the above copyright
 #       notice, this list of conditions and the following disclaimer in the
 #       documentation and/or other materials provided with the distribution.
-#     * Neither the name of Linux Foundation nor
+#     * Neither the name of The Linux Foundation nor
 #       the names of its contributors may be used to endorse or promote
 #       products derived from this software without specific prior written
 #       permission.
@@ -25,9 +25,33 @@
 # OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
+# The script will check total_ram and modify PPR parameters for
+# 64 bit devices with total_ram greater than 1GB
 
-baseband=`getprop ro.baseband`
-if [ "$baseband" = "mdm" ] || [ "$baseband" = "mdm2" ]; then
-	start mdm_helper
+MemTotalStr=`cat /proc/meminfo | grep MemTotal`
+MemTotal=${MemTotalStr:16:8}
+ZRAM_THRESHOLD=1048576
+IsLargeMemory=0
+((IsLargeMemory=MemTotal>ZRAM_THRESHOLD?1:0))
+
+MemTotalStr=`cat /proc/meminfo | grep MemTotal`
+MemTotal=${MemTotalStr:16:8}
+ZRAM_THRESHOLD_1024=1048576
+ZRAM_THRESHOLD_1536=1572864
+if [ $MemTotal -lt $ZRAM_THRESHOLD_1024 ]; then
+    setprop ro.config.zram 1024
+elif [ $MemTotal -lt $ZRAM_THRESHOLD_1536 ]; then
+    setprop ro.config.zram 1536
 fi
-
+#Set per_process_reclaim tuning parameters
+echo 1 > /sys/module/process_reclaim/parameters/enable_process_reclaim
+ProductName=`getprop ro.product.name`
+if [ "$ProductName" == "msm8916_64" ] && [ $IsLargeMemory -eq 1 ]; then
+    echo 10 > /sys/module/process_reclaim/parameters/pressure_min
+    echo 1024 > /sys/module/process_reclaim/parameters/per_swap_size
+else
+    echo 50 > /sys/module/process_reclaim/parameters/pressure_min
+    echo 512 > /sys/module/process_reclaim/parameters/per_swap_size
+fi
+echo 70 > /sys/module/process_reclaim/parameters/pressure_max
+echo 30 > /sys/module/process_reclaim/parameters/swap_opt_eff
