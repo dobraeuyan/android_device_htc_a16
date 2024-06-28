@@ -36,7 +36,7 @@ Front Camera | 5 MP
 | **GPS**                   | |
 | **Camera Photos**         | |
 | **Videocamera**           | |
-| **Audio**                 | |
+| **Audio**                 | :heavy_check_mark: |
 | **Microphone**            | |
 | **Vibration**             | :heavy_check_mark: |
 | **USB**                   | :heavy_check_mark: |
@@ -50,4 +50,4 @@ Front Camera | 5 MP
 | **Thermal**               | :heavy_check_mark: |
 | **FM Radio**              | |
 | **NFC**                   | :heavy_check_mark: |
-| **SELinux enforced**      | :heavy_check_mark: |
+| **SELinux enforced**      | |
