@@ -41,7 +41,8 @@ on fs
     wait /dev/block/bootdevice
     wait /dev/device-mapper
     mount_all fstab.qcom
-
+    swapon_all fstab.qcom
+    write /proc/sys/vm/swappiness 100
     # Update dm-verity state and set partition.*.verified properties
     verity_update_state
 
@@ -100,15 +101,6 @@ service qcamerasvr /system/bin/mm-qcamera-daemon
     class main
     user camera
     group camera system inet input graphics
-
-#enable zram
-on property:ro.config.zram=1024
-    swapon_all /etc/fstab1024.swap
-    write /proc/sys/vm/swappiness 100
-
-on property:ro.config.zram=1536
-    swapon_all /etc/fstab1536.swap
-    write /proc/sys/vm/swappiness 100
 
 on init
    export LD_SHIM_LIBS "/system/lib/liblog.so|/system/lib/liblog_htc.so:/system/lib/libBeautyChat.so|/system/lib/libshim_camera.so"
