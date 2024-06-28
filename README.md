@@ -19,3 +19,35 @@ Rear Camera  | 8 MP
 Front Camera | 5 MP
 
 ![HTC Desire 530](https://fdn2.gsmarena.com/vv/pics/htc/htc-a16-desire-530-1.jpg "HTC Desire 530")
+
+
+
+| Feature                   | Status          |
+|---------------------------|-----------------|
+| **Chipset**               | :heavy_check_mark: |
+| **Memory**                | :heavy_check_mark: |
+| **Storage**               | :heavy_check_mark: |
+| **MicroSD**               | |
+| **Battery**               | :heavy_check_mark: |
+| **Display**               | :heavy_check_mark: |
+| **Touchscreen**           | :heavy_check_mark: |
+| **WiFi**                  | |
+| **Bluetooth**             | |
+| **GPS**                   | |
+| **Camera Photos**         | |
+| **Videocamera**           | |
+| **Audio**                 | |
+| **Microphone**            | |
+| **Vibration**             | Partially |
+| **USB**                   | :heavy_check_mark: |
+| **RIL (SMS-Calls)**       | |
+| **Mobile Data**           | :heavy_check_mark: |
+| **LED**                   | |
+| **Buttons**               | :heavy_check_mark: |
+| **Proximity Sensor**      | :heavy_check_mark: |
+| **Ambient Light Sensor**  | :heavy_check_mark: |
+| **Accelerometer**         | |
+| **Thermal**               | :heavy_check_mark: |
+| **FM Radio**              | |
+| **NFC**                   | :heavy_check_mark: |
+| **SELinux enforced**      | :heavy_check_mark: |
