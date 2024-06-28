@@ -1,5 +1,7 @@
 DEVICE_PATH := device/htc/a16
 
+TARGET_SPECIFIC_HEADER_PATH := $(DEVICE_PATH)/include
+
 # ANT+
 BOARD_ANT_WIRELESS_DEVICE := "vfs-prerelease"
 
@@ -19,12 +21,13 @@ BOARD_SUPPORTS_SOUND_TRIGGER := false
 TARGET_ENABLE_QC_AV_ENHANCEMENTS := true
 
 # Bionic
-TARGET_LD_SHIM_LIBS := /system/lib/libBeautyChat.so|/system/lib/libshim_camera.so \
+TARGET_LD_SHIM_LIBS := \
+    /system/lib/libcamera_client.so.so|/system/lib/libshim_camera.so \
     /system/lib/liblog.so|/system/lib/liblog_htc.so
 
 # Bluetooth
-BOARD_HAVE_BLUETOOTH := true
-BOARD_HAVE_BLUETOOTH_QCOM := true
+#BOARD_HAVE_BLUETOOTH := true
+#BOARD_HAVE_BLUETOOTH_QCOM := true
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(DEVICE_PATH)/bluetooth
 
 # Board
@@ -36,7 +39,9 @@ TARGET_BOOTLOADER_BOARD_NAME := MSM8909
 TARGET_NO_BOOTLOADER := true
 
 # Camera
-USE_CAMERA_STUB := true
+TARGET_SPECIFIC_CAMERA_PARAMETER_LIBRARY := libcamera_parameters_ext
+TARGET_HAS_LEGACY_CAMERA_HAL1 := true
+USE_DEVICE_SPECIFIC_CAMERA := true
 
 # Cryptfs_hw
 TARGET_CRYPTFS_HW_PATH := vendor/qcom/opensource/cryptfs_hw
@@ -94,8 +99,8 @@ TARGET_USERIMAGES_USE_EXT4 := true
 BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
 
 # Hardware
-BOARD_HARDWARE_CLASS += hardware/cyanogen/cmhw
-BOARD_USES_CYANOGEN_HARDWARE := true
+#BOARD_HARDWARE_CLASS += hardware/cyanogen/cmhw
+#BOARD_USES_CYANOGEN_HARDWARE := true
 
 # Init
 TARGET_RECOVERY_DEVICE_MODULES := libinit_msm8909
@@ -165,27 +170,23 @@ USE_SENSOR_MULTI_HAL := true
 # Widevine
 BOARD_WIDEVINE_OEMCRYPTO_LEVEL := 3
 
-#Wifi
-WPA_SUPPLICANT_VERSION              := VER_0_8_X
-BOARD_HAS_QCOM_WLAN                := true
-BOARD_WLAN_DEVICE                        := qcwcn
-#BOARD_HAS_QCOM_WLAN_SDK     := true
-BOARD_WPA_SUPPLICANT_DRIVER      := NL80211
-BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
-BOARD_HOSTAPD_DRIVER        := NL80211
-BOARD_HOSTAPD_PRIVATE_LIB   := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
-#TARGET_PROVIDES_WCNSS_QMI := true
-TARGET_USES_WCNSS_CTRL := true
+# Wifi
+WPA_SUPPLICANT_VERSION := VER_0_8_X
+BOARD_WLAN_DEVICE := qcwcn
+BOARD_WPA_SUPPLICANT_DRIVER := NL80211
+TARGET_PROVIDES_WCNSS_QMI := true
 TARGET_USES_QCOM_WCNSS_QMI := true
-WIFI_DRIVER_FW_PATH_STA          := "sta"
-WIFI_DRIVER_FW_PATH_AP           := "ap"
+WIFI_DRIVER_FW_PATH_STA := "sta"
+WIFI_DRIVER_FW_PATH_AP := "ap"
+WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/wlan.ko"
+WIFI_DRIVER_MODULE_NAME := "wlan"
 
-
-#BOARD_WLAN_DEVICE                := qcwcn
-#BOARD_WPA_SUPPLICANT_DRIVER      := NL80211
-#WPA_SUPPLICANT_VERSION           := VER_0_8_X
-#WIFI_DRIVER_FW_PATH_STA          := "sta"
-#WIFI_DRIVER_FW_PATH_AP           := "ap"
+#BOARD_HAS_QCOM_WLAN                := true
+#BOARD_HAS_QCOM_WLAN_SDK     := true
+#BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
+#BOARD_HOSTAPD_DRIVER        := NL80211
+#BOARD_HOSTAPD_PRIVATE_LIB   := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
+#TARGET_USES_WCNSS_CTRL := true
 
 # OTA
 TARGET_OTA_ASSERT_DEVICE := a16,16uhl,a16whl,a16wl,a16ul,htc_a16uhl,htc_a16whl,htc_a16wl,htc_a16ul

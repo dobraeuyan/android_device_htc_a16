@@ -18,18 +18,13 @@
 
 // GraphicBuffer(uint32_t inWidth, uint32_t inHeight, PixelFormat inFormat,
 //               uint32_t inUsage, std::string requestorName = "<Unknown>");
-extern "C" void _ZN7android16CameraParameters15SCENE_MODE_TEXTE(
+extern "C" void _ZN7android13GraphicBufferC1EjjijNSt3__112basic_stringIcNS1_11char_traitsIcEENS1_9allocatorIcEEEE(
     uint32_t inWidth, uint32_t inHeight, int inFormat, uint32_t inUsage,
     std::string requestorName);
 
 extern "C" void _ZN7android13GraphicBufferC1Ejjij(
     uint32_t inWidth, uint32_t inHeight, int inFormat, uint32_t inUsage) {
   std::string requestorName = "<Unknown>";
-  _ZN7android16CameraParameters15SCENE_MODE_TEXTE(
+  _ZN7android13GraphicBufferC1EjjijNSt3__112basic_stringIcNS1_11char_traitsIcEENS1_9allocatorIcEEEE(
       inWidth, inHeight, inFormat, inUsage, requestorName);
-}
-
-// android::Fence::~Fence()
-extern "C" void _ZN7android5FenceD1Ev() {
-  // no-op, the explicit destructor was replaced with = default;
 }

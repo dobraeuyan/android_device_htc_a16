@@ -65,18 +65,21 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
     frameworks/native/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml
 
-# Dalvik
+# Dalvik properties
 PRODUCT_PROPERTY_OVERRIDES += \
-       dalvik.vm.heapgrowthlimit=128m \
-       dalvik.vm.heapminfree=6m
+    dalvik.vm.heapstartsize=8m \
+    dalvik.vm.heapgrowthlimit=192m \
+    dalvik.vm.heapsize=256m \
+    dalvik.vm.heaptargetutilization=0.75 \
+    dalvik.vm.heapminfree=512k \
+    dalvik.vm.heapmaxfree=8m
 
 # Display
 PRODUCT_PACKAGES += \
     hwcomposer.msm8909 \
     gralloc.msm8909 \
     memtrack.msm8909 \
-    copybit.msm8909 \
-    libtinyxml \
+    copybit.msm8909
         
 # EGL implementation
 PRODUCT_PACKAGES += \
@@ -98,32 +101,58 @@ PRODUCT_COPY_FILES += \
 # Handheld
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml
-        
-# HTC log
-PRODUCT_PACKAGES += \
-    liblog_htc
 
 # Init
 PRODUCT_PACKAGES += \
-    fstab.a16 \
-    init.a16.rc \
-    init.a16_sub.rc \
-    init.a16.usb.rc \
-    ueventd.a16.rc 
-
-PRODUCT_PACKAGES += \
-    init.a16.bms.sh \
-    init.a16.bt.sh \
-    init.a16.early_boot.sh \
-    init.a16.fm.sh \
-    init.a16.post_boot.sh \
-    init.a16.sh \
-    init.a16.syspart_fixup.sh \
+    fstab.qcom \
+    fstab.htc_a16 \
     init.class_main.sh \
+    init.hosd.common.rc \
+    init.hosd_fusion.usb.rc \
+    init.hosd.htc_a16.rc \
+    init.hosd.usb.rc \
+    init.htc_a16.rc \
+    init.htc.common.rc \
+    init.htc.usb.rc \
     init.mdm.sh \
     init.network.sh \
-    init.usbdiag.sh
-    
+    init.power.rc \
+    init.qcom.bms.sh \
+    init.qcom.class_core.sh \
+    init.qcom.early_boot.sh \
+    init.qcom.factory.rc \
+    init.qcom.firmware_links.sh \
+    init.qcom.rc \
+    init.qcom.sh \
+    init.qcom.syspart_fixup.sh \
+    init.qcom.usb.sh \
+    init.recovery.common.rc \
+    init.recovery.htc_a16.rc \
+    init.target.rc \
+    init.usbdiag.sh \
+    ueventd.htc_a16.rc \
+    ueventd.qcom.rc
+
+PRODUCT_PACKAGES += \
+    hcidump.sh \
+    hsic.control.bt.sh \
+    init.ath3k.bt.sh \
+    init.crda.sh \
+    init.mocana.sh \
+    init.qcom.audio.sh \
+    init.qcom.bt.sh \
+    init.qcom.coex.sh \
+    init.qcom.debug.sh \
+    init.qcom.efs.sync.sh \
+    init.qcom.fm.sh \
+    init.qcom.modem_links.sh \
+    init.qcom.post_boot.sh \
+    init.qcom.sdio.sh \
+    init.qcom.uicc.sh \
+    init.qcom.wifi.sh \
+    init.qti.ims.sh \
+    qca6234-service.sh
+
 # IRSC
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/sec_config:system/etc/sec_config
@@ -135,7 +164,11 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/keylayout/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl \
     $(LOCAL_PATH)/configs/keylayout/synaptics_dsx.kl:system/usr/keylayout/synaptics_dsx.kl \
     $(LOCAL_PATH)/configs/keylayout/synaptics_rmi4_i2c.kl:system/usr/keylayout/synaptics_rmi4_i2c.kl
-    
+
+# Lights
+PRODUCT_PACKAGES += \
+    lights.msm8909
+
 # Media
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/media/media_profiles_8909.xml:system/etc/media_profiles.xml \
@@ -164,11 +197,11 @@ PRODUCT_PACKAGES += \
     Tag
 
 PRODUCT_COPY_FILES += \
-     packages/apps/Nfc/migrate_nfc.txt:system/etc/updatecmds/migrate_nfc.txt \
-     frameworks/native/data/etc/com.nxp.mifare.xml:system/etc/permissions/com.nxp.mifare.xml \
-     frameworks/native/data/etc/com.android.nfc_extras.xml:system/etc/permissions/com.android.nfc_extras.xml \
-     frameworks/native/data/etc/android.hardware.nfc.xml:system/etc/permissions/android.hardware.nfc.xml \
-     frameworks/native/data/etc/android.hardware.nfc.hce.xml:system/etc/permissions/android.hardware.nfc.hce.xml \
+    packages/apps/Nfc/migrate_nfc.txt:system/etc/updatecmds/migrate_nfc.txt \
+    frameworks/native/data/etc/com.nxp.mifare.xml:system/etc/permissions/com.nxp.mifare.xml \
+    frameworks/native/data/etc/com.android.nfc_extras.xml:system/etc/permissions/com.android.nfc_extras.xml \
+    frameworks/native/data/etc/android.hardware.nfc.xml:system/etc/permissions/android.hardware.nfc.xml \
+    frameworks/native/data/etc/android.hardware.nfc.hce.xml:system/etc/permissions/android.hardware.nfc.hce.xml \
     $(LOCAL_PATH)/configs/nfc/libnfc-brcm.conf:system/etc/libnfc-brcm.conf \
     $(LOCAL_PATH)/configs/nfc/libnfc-nxp.conf:system/etc/libnfc-nxp.conf \
     $(LOCAL_PATH)/configs/nfc/nfcee_access.xml:system/etc/nfcee_access.xml \
@@ -198,11 +231,20 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.min_freq_0=800000
-       
+
+# Qualcomm dependencies
+PRODUCT_PACKAGES += \
+    libtinyxml
+
 # RIL
 PRODUCT_PACKAGES += \
     libcnefeatureconfig
-    
+
+# Screen density
+PRODUCT_AAPT_CONFIG := normal
+PRODUCT_AAPT_PREBUILT_DPI := xxhdpi xhdpi hdpi
+PRODUCT_AAPT_PREF_CONFIG := xxhdpi
+
 # Sensors
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.sensor.accelerometer.xml:system/etc/permissions/android.hardware.sensor.accelerometer.xml \
@@ -211,7 +253,13 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.sensor.light.xml:system/etc/permissions/android.hardware.sensor.light.xml \
     frameworks/native/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
     $(LOCAL_PATH)/configs/sensors/hals.conf:system/etc/sensors/hals.conf
+
+# Shims
+PRODUCT_PACKAGES += \
+    liblog_htc
     
+#libshim_camera
+
 # Software
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.midi.xml:system/etc/permissions/android.software.midi.xml \
@@ -258,6 +306,5 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/wifi/WCNSS_qcom_cfg.ini:system/etc/wifi/WCNSS_qcom_cfg.ini \
     $(LOCAL_PATH)/wifi/WCNSS_qcom_wlan_nv.bin:system/etc/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin \
     $(LOCAL_PATH)/wifi/WCNSS_wlan_dictionary.dat:system/etc/firmware/wlan/prima/WCNSS_wlan_dictionary.dat
-    
-    
+
 $(call inherit-product-if-exists, vendor/htc/a16/a16-vendor.mk)

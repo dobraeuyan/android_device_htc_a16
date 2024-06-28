@@ -33,16 +33,16 @@ Front Camera | 5 MP
 | **Touchscreen**           | :heavy_check_mark: |
 | **WiFi**                  | |
 | **Bluetooth**             | |
-| **GPS**                   | |
-| **Camera Photos**         | |
+| **GPS**                   | :heavy_check_mark: |
+| **Camera Photos**         | Partially |
 | **Videocamera**           | |
-| **Audio**                 | :heavy_check_mark: |
+| **Audio**                 | |
 | **Microphone**            | |
-| **Vibration**             | :heavy_check_mark: |
+| **Vibration**             | Partially |
 | **USB**                   | :heavy_check_mark: |
 | **RIL (SMS-Calls)**       | |
 | **Mobile Data**           | :heavy_check_mark: |
-| **LED**                   | |
+| **LED**                   | :heavy_check_mark: |
 | **Buttons**               | :heavy_check_mark: |
 | **Proximity Sensor**      | :heavy_check_mark: |
 | **Ambient Light Sensor**  | :heavy_check_mark: |

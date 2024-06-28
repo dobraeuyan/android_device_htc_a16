@@ -134,17 +134,13 @@ $(RFS_MPSS_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 
 ALL_DEFAULT_INSTALLED_MODULES += $(RFS_MPSS_SYMLINKS)
 
-# Create a link for the WCNSS config file, which ends up as a writable
-# version in /data/misc/wifi
-#WCNSS_CONFIG := WCNSS_qcom_cfg.ini
+WLAN_MODULE_SYMLINK := $(TARGET_OUT)/lib/modules/wlan.ko
+$(WLAN_MODULE_SYMLINK): $(LOCAL_INSTALLED_MODULE)
+	@echo "wlan.ko module link: $@"
+	@mkdir -p $(dir $@)
+	@rm -rf $@
+	$(hide) ln -sf /system/lib/modules/pronto/pronto_wlan.ko $@
 
-#WCNSS_CONFIG_SYMLINK := $(addprefix $(TARGET_OUT_ETC)/wifi/,$(notdir $(WCNSS_CONFIG)))
-#$(WCNSS_CONFIG_SYMLINK): $(LOCAL_INSTALLED_MODULE)
-#	@echo "WCNSS config link: $@"
-#	@mkdir -p $(dir $@)
-#	@rm -rf $@
-#	$(hide) ln -sf /data/misc/wifi/$(notdir $@) $@
-#
-#ALL_DEFAULT_INSTALLED_MODULES += $(WCNSS_CONFIG_SYMLINK)
+ALL_DEFAULT_INSTALLED_MODULES += $(WLAN_MODULE_SYMLINK)
 
 endif

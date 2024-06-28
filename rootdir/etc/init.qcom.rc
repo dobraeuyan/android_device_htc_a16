@@ -33,7 +33,7 @@ on early-init
     mount debugfs debugfs /sys/kernel/debug
 
 on init
-   export LD_SHIM_LIBS "/system/lib/liblog.so|/system/lib/liblog_htc.so:/system/lib/libBeautyChat.so|/system/lib/libshim_camera.so"
+   export LD_SHIM_LIBS "/system/lib/liblog.so|/system/lib/liblog_htc.so:/system/lib/libcamera_client.so|/system/lib/libshim_camera.so"
     # Set permissions for persist partition
     mkdir /persist 0771 system system
 
@@ -532,19 +532,6 @@ service netmgrd /system/bin/netmgrd
     class main
     disabled
 
-service ipacm-diag /system/bin/ipacm-diag
-    class main
-    user system
-    socket ipacm_log_file dgram 660 system net_admin
-    group net_admin qcom_diag
-    disabled
-
-service ipacm /system/bin/ipacm
-    class main
-    user net_admin
-    group net_admin inet
-    disabled
-
 service qti /system/vendor/bin/qti
     class main
     user radio
@@ -638,27 +625,6 @@ service iprenew_wlan0 /system/bin/dhcpcd -n
 
 service iprenew_p2p /system/bin/dhcpcd -n
     class late_start
-    disabled
-    oneshot
-
-service ptt_socket_app /system/bin/ptt_socket_app -d
-    class main
-    user root
-    group root
-    oneshot
-
-# HTC_WIFI_START
-# [HPKB#6821] fix ptt_socket_app cannot start due to wrong user
-on property:htc.build.stage!=2
-    start ptt_socket_app
-
-on property:htc.build.stage=2
-    stop ptt_socket_app
-# HTC_WIFI_END
-
-service ptt_ffbm /system/bin/ptt_socket_app -f -d
-    user root
-    group root
     disabled
     oneshot
 
@@ -769,12 +735,6 @@ service wifi-crda /system/bin/sh /system/etc/init.crda.sh
    disabled
    oneshot
 
-service config-zram /system/bin/sh /system/etc/init.qcom.zram.sh
-   class late_start
-   user root
-   disabled
-   oneshot
-
 service atfwd /system/bin/ATFWD-daemon
     class late_start
     user system
@@ -784,8 +744,14 @@ service atfwd /system/bin/ATFWD-daemon
 on property:sys.boot_completed=1
     start qcom-post-boot
     start qti-testscripts
-    start config-zram
     start atfwd
+
+    write /sys/module/process_reclaim/parameters/enable_process_reclaim 1
+    write /sys/module/process_reclaim/parameters/pressure_min 10
+    write /sys/module/process_reclaim/parameters/per_swap_size 1024
+
+    write /sys/module/process_reclaim/parameters/pressure_max 70
+    write /sys/module/process_reclaim/parameters/swap_opt_eff 30
 
 service hostapd /system/bin/hostapd -dd /data/hostapd/hostapd.conf
     class late_start
@@ -819,42 +785,6 @@ service battery_monitor /system/bin/battery_monitor
     user system
     group system
     disabled
-
-#SSD_RIL: Remove unnecessary service
-#service ril-daemon2 /system/bin/rild -c 2
-#    class main
-#    socket rild2 stream 660 root radio
-#    socket rild-debug2 stream 660 radio system
-#    user root
-#    disabled
-#    group radio cache inet misc audio sdcard_r sdcard_rw diag qcom_diag log
-
-#SSD_RIL: Remove unnecessary service
-#service ril-daemon3 /system/bin/rild -c 3
-#    class main
-#    socket rild3 stream 660 root radio
-#    socket rild-debug3 stream 660 radio system
-#    user root
-#    disabled
-#    group radio cache inet misc audio sdcard_r sdcard_rw diag qcom_diag log
-
-#service usb_uicc_enable /system/bin/sh /system/etc/init.qcom.uicc.sh
-#    class late_start
-#    user root
-#    disabled
-#    oneshot
-
-#service usb_uicc_daemon /system/bin/usb_uicc_client
-#    class main
-#    user system
-#    group system log net_raw
-#    oneshot
-
-#on property:sys.usb_uicc.enabled=1
-#    start usb_uicc_enable
-
-#on property:sys.usb_uicc.enabled=0
-#    start usb_uicc_enable
 
 service profiler_daemon /system/bin/profiler_daemon
     class late_start
@@ -960,12 +890,6 @@ service msm_irqbalance /system/bin/msm_irqbalance -f /system/vendor/etc/msm_irqb
     group root
     disabled
 
-# init.qcom.usb.sh configure for qcom feature
-#service qcom-usb-sh /system/bin/sh /init.qcom.usb.sh
-#    class main
-#    user root
-#    oneshot
-
 service wfdservice /system/bin/wfdservice
     class main
     user system
@@ -978,14 +902,6 @@ on property:sys.wfdservice=enable
 
 on property:sys.wfdservice=disable
     stop wfdservice
-
-service RIDL /system/vendor/bin/RIDLClient.exe
-    class late_start
-    oneshot
-    user root
-    group root inet log sdcard_r sdcard_rw qcom_diag radio net_raw
-    # removed for security team - misc bluetooth gps wifi diag media_rw
-    # limited to 12 groups.  Unused: audio usb net_bt_admin net_bt_stac net_admin
 
 # bugreport is triggered by developer options
 service bugreport /system/bin/dumpstate -d -p -B \
