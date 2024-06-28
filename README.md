@@ -38,7 +38,7 @@ Front Camera | 5 MP
 | **Videocamera**           | |
 | **Audio**                 | |
 | **Microphone**            | |
-| **Vibration**             | Partially |
+| **Vibration**             | :heavy_check_mark: |
 | **USB**                   | :heavy_check_mark: |
 | **RIL (SMS-Calls)**       | |
 | **Mobile Data**           | :heavy_check_mark: |
