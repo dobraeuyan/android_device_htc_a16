@@ -1,21 +1,21 @@
-Copyright (C) 2024 The LineageOS Project
-
-Device configuration for HTC Desire 530 (a16)
+Unified Device Tree for HTC Desire 530 (a16)
 =====================================
+
+The HTC Desire 530 (codenamed _"a16"_) is a mid-range smartphone from HTC.
+It was released in March 2016.
 
 Basic   | Spec Sheet
 -------:|:-------------------------
 CPU     | Quad-core 1.10GHz
-CHIPSET | Qualcomm MSM8909 Snapdragon 210
+Chipset | Qualcomm MSM8909 Snapdragon 210
 GPU     | 400MHz Adreno 304
 Memory  | 1.5 GB (LPDDR3)
-Shipped Android Version | 6.0 (Marshmallow)
+Shipped Android Version | 6.0.1
 Storage | 16 GB
-Battery | 2200 mAh (non-removable)
-Dimensions | 146.9 x 70.9 x 8.3 mm
-Display | 1280x720 pixels, 5" Super LCD, (~300 PPI density)
+MicroSD | Up to 200 GB
+Battery | Li-Ion 2200 mAh (non-removable)
+Display | 1280x720 pixels, 5 inches (~300 PPI density)
 Rear Camera  | 8 MP
 Front Camera | 5 MP
-Release Month | March 2016
 
 ![HTC Desire 530](https://fdn2.gsmarena.com/vv/pics/htc/htc-a16-desire-530-1.jpg "HTC Desire 530")
