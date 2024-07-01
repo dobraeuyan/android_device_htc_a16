@@ -12,10 +12,13 @@
 /dev/block/bootdevice/by-name/cache		/cache 			ext4	nosuid,nodev,barrier=1						wait
 /dev/block/bootdevice/by-name/boot		/boot			emmc	defaults							defaults
 /dev/block/bootdevice/by-name/recovery		/recovery		emmc	defaults							defaults
-/dev/block/bootdevice/by-name/persist		/persist		ext4	nosuid,nodev,barrier=1						defaults
+/dev/block/bootdevice/by-name/persist		/persist		ext4	nosuid,nodev,barrier=1						wait
 /dev/block/bootdevice/by-name/devlog		/devlog			ext4	nosuid,nodev,barrier=1,errors=continue				defaults
 /dev/block/bootdevice/by-name/fataldevlog	/fataldevlog		ext4	nosuid,nodev,barrier=1,errors=continue				defaults
-/dev/block/bootdevice/by-name/carrier		/carrier		ext4	nosuid,nodev,noatime,barrier=1,grpid				defaults	
+/dev/block/bootdevice/by-name/carrier		/carrier		ext4	nosuid,nodev,noatime,barrier=1,grpid				wait	
+/dev/block/bootdevice/by-name/rfg_3		/firmware/wsd		vfat	ro,shortname=lower,uid=3012,gid=3012,dmask=277,fmask=377	wait
+/dev/block/bootdevice/by-name/radio		/firmware/radio		vfat	ro,shortname=lower,uid=1000,gid=1000,dmask=227,fmask=337	wait
+/dev/block/bootdevice/by-name/wcnss		/firmware/wcnss		vfat	ro,shortname=lower,uid=1000,gid=1000,dmask=227,fmask=337	wait
 
 /devices/soc.0/7864900.sdhci/mmc_host*		auto			auto	nosuid,nodev							wait,voldmanaged=sdcard1:auto,noemulatedsd,encryptable=footer
 /devices/platform/msm_hsusb*			auto			auto	nosuid,nodev							wait,voldmanaged=usbotg:auto

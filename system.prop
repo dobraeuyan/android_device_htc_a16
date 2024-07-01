@@ -285,6 +285,10 @@ persist.hwc.enable_vds=0
 # system.prop for htc_a16ul
 #
 
+# NFC
+setprop debug.nfc.fw_download "true"
+setprop debug.nfc.fw_boot_download "false"
+
 # Default network type.
 # 9 => GSM/UMTS/LTE mode preferred.
 ro.telephony.default_network=22

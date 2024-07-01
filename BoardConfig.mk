@@ -122,7 +122,7 @@ BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_TAGS_OFFSET := 0x01e00000
 BOARD_RAMDISK_OFFSET := 0x02000000
 BOARD_MKBOOTIMG_ARGS :=  --ramdisk_offset $(BOARD_RAMDISK_OFFSET) --tags_offset $(BOARD_KERNEL_TAGS_OFFSET) --dt $(DEVICE_PATH)/dt.img --board boot:0
-BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=htc_a16 ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci lpm_levels.sleep_disabled=1 vmalloc=400m  androidboot.selinux=permissive
+BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci lpm_levels.sleep_disabled=1 vmalloc=400m  androidboot.selinux=permissive
 BOARD_NAME := boot:0
 
 # Keymaster
@@ -191,7 +191,7 @@ WIFI_DRIVER_FW_PATH_AP      := "ap"
 WIFI_DRIVER_FW_PATH_STA     := "sta"
 
 # OTA
-TARGET_OTA_ASSERT_DEVICE := a16,a16wl,a16ul,a16dwgl,htc_a16,htc_a16wl,htc_a16ul,htc_a16dwgl
+TARGET_OTA_ASSERT_DEVICE := a16,16uhl,a16whl,a16wl,a16ul,htc_a16uhl,htc_a16whl,htc_a16wl,htc_a16ul
 
 # inherit from the proprietary version
 -include vendor/htc/a16/BoardConfigVendor.mk
