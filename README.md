@@ -12,7 +12,7 @@ GPU     | 400MHz Adreno 304
 Memory  | 1.5 GB (LPDDR3)
 Shipped Android Version | 6.0.1
 Storage | 16 GB
-MicroSD | Up to 200 GB
+MicroSD | Up to 2TB
 Battery | Li-Ion 2200 mAh (non-removable)
 Display | 1280x720 pixels, 5 inches (~300 PPI density)
 Rear Camera  | 8 MP
