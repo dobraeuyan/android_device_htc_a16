@@ -2,6 +2,8 @@ DEVICE_PATH := device/htc/a16
 
 TARGET_SPECIFIC_HEADER_PATH := $(DEVICE_PATH)/include
 
+BOARD_SECCOMP_POLICY := $(DEVICE_PATH)/seccomp
+
 # ANT+
 BOARD_ANT_WIRELESS_DEVICE := "vfs-prerelease"
 
@@ -102,6 +104,9 @@ BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
 #BOARD_HARDWARE_CLASS += hardware/cyanogen/cmhw
 #BOARD_USES_CYANOGEN_HARDWARE := true
 
+# IMS
+TARGET_USES_IMS := true
+
 # Init
 TARGET_RECOVERY_DEVICE_MODULES := libinit_msm8909
 TARGET_INIT_VENDOR_LIB := libinit_msm8909
@@ -117,7 +122,7 @@ BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_TAGS_OFFSET := 0x01e00000
 BOARD_RAMDISK_OFFSET := 0x02000000
 BOARD_MKBOOTIMG_ARGS :=  --ramdisk_offset $(BOARD_RAMDISK_OFFSET) --tags_offset $(BOARD_KERNEL_TAGS_OFFSET) --dt $(DEVICE_PATH)/dt.img --board boot:0
-BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci lpm_levels.sleep_disabled=1 earlyprintk vmalloc=400m androidboot.hardware=htc_a16 androidboot.selinux=permissive
+BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=htc_a16 ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci lpm_levels.sleep_disabled=1 vmalloc=400m  androidboot.selinux=permissive
 BOARD_NAME := boot:0
 
 # Keymaster
@@ -171,22 +176,19 @@ USE_SENSOR_MULTI_HAL := true
 BOARD_WIDEVINE_OEMCRYPTO_LEVEL := 3
 
 # Wifi
-WPA_SUPPLICANT_VERSION := VER_0_8_X
-BOARD_WLAN_DEVICE := qcwcn
+WPA_SUPPLICANT_VERSION      := VER_0_8_X
+BOARD_HAS_QCOM_WLAN         := true
+BOARD_HAS_QCOM_WLAN_SDK     := true
+BOARD_WLAN_DEVICE           := qcwcn
 BOARD_WPA_SUPPLICANT_DRIVER := NL80211
-TARGET_PROVIDES_WCNSS_QMI := true
-TARGET_USES_QCOM_WCNSS_QMI := true
-WIFI_DRIVER_FW_PATH_STA := "sta"
-WIFI_DRIVER_FW_PATH_AP := "ap"
-WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/wlan.ko"
-WIFI_DRIVER_MODULE_NAME := "wlan"
-
-#BOARD_HAS_QCOM_WLAN                := true
-#BOARD_HAS_QCOM_WLAN_SDK     := true
-#BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
-#BOARD_HOSTAPD_DRIVER        := NL80211
-#BOARD_HOSTAPD_PRIVATE_LIB   := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
-#TARGET_USES_WCNSS_CTRL := true
+BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
+BOARD_HOSTAPD_DRIVER        := NL80211
+BOARD_HOSTAPD_PRIVATE_LIB   := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
+TARGET_PROVIDES_WCNSS_QMI   := true
+TARGET_USES_WCNSS_CTRL      := true
+TARGET_USES_QCOM_WCNSS_QMI  := true
+WIFI_DRIVER_FW_PATH_AP      := "ap"
+WIFI_DRIVER_FW_PATH_STA     := "sta"
 
 # OTA
 TARGET_OTA_ASSERT_DEVICE := a16,16uhl,a16whl,a16wl,a16ul,htc_a16uhl,htc_a16whl,htc_a16wl,htc_a16ul

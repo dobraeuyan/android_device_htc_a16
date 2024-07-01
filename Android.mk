@@ -134,13 +134,4 @@ $(RFS_MPSS_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 
 ALL_DEFAULT_INSTALLED_MODULES += $(RFS_MPSS_SYMLINKS)
 
-WLAN_MODULE_SYMLINK := $(TARGET_OUT)/lib/modules/wlan.ko
-$(WLAN_MODULE_SYMLINK): $(LOCAL_INSTALLED_MODULE)
-	@echo "wlan.ko module link: $@"
-	@mkdir -p $(dir $@)
-	@rm -rf $@
-	$(hide) ln -sf /system/lib/modules/pronto/pronto_wlan.ko $@
-
-ALL_DEFAULT_INSTALLED_MODULES += $(WLAN_MODULE_SYMLINK)
-
 endif

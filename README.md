@@ -24,17 +24,21 @@ Front Camera | 5 MP
 
 | Feature                   | Status          |
 |---------------------------|-----------------|
-| **Boot**                  | :heavy_check_mark: |
+| **Chipset**               | :heavy_check_mark: |
+| **Memory**                | :heavy_check_mark: |
 | **Storage**               | :heavy_check_mark: |
-| **MicroSD**               | :heavy_check_mark: |
+| **MicroSD**               | |
+| **Battery**               | :heavy_check_mark: |
+| **Display**               | :heavy_check_mark: |
+| **Touchscreen**           | :heavy_check_mark: |
 | **WiFi**                  | |
 | **Bluetooth**             | |
 | **GPS**                   | :heavy_check_mark: |
-| **Camera Photos**         | Face detector broken |
+| **Camera Photos**         | Partially |
 | **Videocamera**           | |
 | **Audio**                 | |
 | **Microphone**            | |
-| **Vibration**             | :heavy_check_mark: |
+| **Vibration**             | Partially |
 | **USB**                   | :heavy_check_mark: |
 | **RIL (SMS-Calls)**       | |
 | **Mobile Data**           | :heavy_check_mark: |

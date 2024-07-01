@@ -25,13 +25,16 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
-#import init.qcom.usb.rc
+import init.qcom.usb.rc
 import init.target.rc
 import init.qcom.factory.rc
 
 on early-init
     mount debugfs debugfs /sys/kernel/debug
-
+    mkdir /firmware 0771 system system
+    mkdir /system 0777 root root
+    symlink /data/tombstones /tombstones
+    
 on init
    export LD_SHIM_LIBS "/system/lib/liblog.so|/system/lib/liblog_htc.so:/system/lib/libcamera_client.so|/system/lib/libshim_camera.so"
     # Set permissions for persist partition
@@ -55,6 +58,9 @@ on early-boot
     exec u:r:qti_init_shell:s0 -- /init.qcom.early_boot.sh
 
 on boot
+    rm /dev/mem
+    rm /dev/kmem
+
     chown bluetooth bluetooth /sys/module/bluetooth_power/parameters/power
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
@@ -95,7 +101,8 @@ on boot
     mkdir /dev/socket/netmgr 0750 radio radio
 
     setprop wifi.interface wlan0
-
+    setprop ro.product.ram ${ro.boot.ddrsize}
+    
 #   Define TCP buffer sizes for various networks
 #   ReadMin, ReadInitial, ReadMax, WriteMin, WriteInitial, WriteMax,
     setprop net.tcp.buffersize.wifi    524288,2097152,4194304,262144,524288,1048576
@@ -316,6 +323,12 @@ service ss_ramdump /system/bin/subsystem_ramdump
     group system
     disabled
 
+service mocana-startup /system/bin/sh /system/etc/init.mocana.sh
+    class late_start
+    user root
+    disabled
+    oneshot
+
 on property:persist.sys.ssr.restart_level=*
     start ssr_setup
 
@@ -329,7 +342,8 @@ on property:persist.sys.ssr.enable_ramdumps=0
 
 on property:sys.boot_completed=1
     write /dev/kmsg "Boot completed "
-
+    start mocana-startup
+    
 on property:persist.radio.atfwd.start=false
     stop atfwd
 
@@ -902,13 +916,6 @@ on property:sys.wfdservice=enable
 
 on property:sys.wfdservice=disable
     stop wfdservice
-
-# bugreport is triggered by developer options
-service bugreport /system/bin/dumpstate -d -p -B \
-        -o /data/data/com.android.shell/files/bugreports/bugreport
-    class main
-    disabled
-    oneshot
 
 service fidodaemon /system/vendor/bin/fidodaemon
     class late_start

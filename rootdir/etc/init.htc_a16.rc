@@ -1,6 +1,5 @@
 import init.qcom.rc
 import init.htc.common.rc
-import init.htc_storage.rc
 
 # HTC LED
 on init
