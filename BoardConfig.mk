@@ -191,7 +191,7 @@ WIFI_DRIVER_FW_PATH_AP      := "ap"
 WIFI_DRIVER_FW_PATH_STA     := "sta"
 
 # OTA
-TARGET_OTA_ASSERT_DEVICE := a16,16uhl,a16whl,a16wl,a16ul,htc_a16uhl,htc_a16whl,htc_a16wl,htc_a16ul
+TARGET_OTA_ASSERT_DEVICE := a16,a16wl,a16ul,a16dwgl,htc_a16,htc_a16wl,htc_a16ul,htc_a16dwgl
 
 # inherit from the proprietary version
 -include vendor/htc/a16/BoardConfigVendor.mk
