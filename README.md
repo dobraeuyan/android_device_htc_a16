@@ -24,15 +24,14 @@ Front Camera | 5 MP
 
 | Feature                   | Status          |
 |---------------------------|-----------------|
-| **Chipset**               | :heavy_check_mark: |
-| **Memory**                | :heavy_check_mark: |
+| **CPU**                   | :heavy_check_mark: |
+| **GPU**                   | :heavy_check_mark: |
 | **Storage**               | :heavy_check_mark: |
 | **MicroSD**               | :heavy_check_mark: |
-| **Battery**               | :heavy_check_mark: |
 | **Display**               | :heavy_check_mark: |
 | **Touchscreen**           | :heavy_check_mark: |
 | **WiFi**                  | |
-| **Bluetooth**             | |
+| **Bluetooth**             | :heavy_check_mark: |
 | **GPS**                   | :heavy_check_mark: |
 | **Camera Photos**         | Partially |
 | **Videocamera**           | |
@@ -52,3 +51,4 @@ Front Camera | 5 MP
 | **FM Radio**              | |
 | **NFC**                   | :heavy_check_mark: |
 | **SELinux enforced**      | |
+

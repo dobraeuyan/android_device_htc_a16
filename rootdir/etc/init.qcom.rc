@@ -43,8 +43,9 @@ on early-init
     chmod 0755 /sys/kernel/debug
     
 on init
-   export LD_SHIM_LIBS "/system/lib/liblog.so|/system/lib/liblog_htc.so:/system/lib/libcamera_client.so|/system/lib/libshim_camera.so"
-
+   export LD_PRELOAD "/system/lib/liblog_htc.so"
+   #export LD_SHIM_LIBS "/system/lib/libcamera_client.so|/system/lib/libshim_camera.so"
+   
     # Set permissions for persist partition
     mkdir /persist 0771 system system
 
@@ -349,27 +350,6 @@ on post-fs-data
     mkdir /data/misc/SelfHost/Running/ 2750 system shell
     mkdir /data/misc/SelfHost/socket/ 2770 system system
 
-service ssr_setup /system/bin/ssr_setup
-    oneshot
-    disabled
-
-service ss_ramdump /system/bin/subsystem_ramdump
-    class main
-    user system
-    group system
-    disabled
-
-on property:persist.sys.ssr.debug=1
-    start ssr_setup
-
-on property:persist.sys.ssr.debug=1
-    write /sys/module/subsystem_restart/parameters/enable_ramdumps 1
-    mkdir /data/ramdump 770 system system
-    start ss_ramdump
-
-on property:persist.sys.ssr.debug=0
-    write /sys/module/subsystem_restart/parameters/enable_ramdumps 0
-
 on property:sys.boot_completed=1
     write /dev/kmsg "Boot completed "
     insmod /system/lib/modules/ecryptfs.ko
@@ -518,22 +498,10 @@ service ftmd /system/bin/logwrapper /system/bin/ftmdaemon
     disabled
     oneshot
 
-service bridgemgrd /system/bin/bridgemgrd
-    class late_start
-    user radio
-    group radio qcom_diag
-    disabled
-
 service port-bridge /system/bin/port-bridge /dev/mhi_pipe_32 /dev/ttyGS0
     class main
     user radio system
     group radio system inet
-    disabled
-
-service qmiproxy /system/bin/qmiproxy
-    class main
-    user radio
-    group radio qcom_diag
     disabled
 
 # QMUX must be in multiple groups to support external process connections
@@ -721,17 +689,6 @@ on property:ro.data.large_tcp_window_size=true
     # Adjust socket buffer to enlarge TCP receive window for high bandwidth (e.g. DO-RevB)
     write /proc/sys/net/ipv4/tcp_adv_win_scale  2
 
-service battery_monitor /system/bin/battery_monitor
-    user system
-    group system
-    disabled
-
-service profiler_daemon /system/bin/profiler_daemon
-    class late_start
-    user root
-    group root
-    disabled
-
 on property:ro.fuse_sdcard=true
     start sdcard
 
@@ -748,12 +705,6 @@ service hcidump /system/bin/sh /system/etc/hcidump.sh
 service charger /charger
     class charger
     seclabel u:r:healthd:s0
-
-service ssr_diag /system/bin/ssr_diag
-    class late_start
-    user system
-    group system
-    disabled
 
 service diag_mdlog_start /system/bin/diag_mdlog
     class late_start

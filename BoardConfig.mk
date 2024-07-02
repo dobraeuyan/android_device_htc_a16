@@ -28,9 +28,10 @@ TARGET_LD_SHIM_LIBS := \
     /system/lib/liblog.so|/system/lib/liblog_htc.so
 
 # Bluetooth
-#BOARD_HAVE_BLUETOOTH := true
-#BOARD_HAVE_BLUETOOTH_QCOM := true
+BOARD_HAVE_BLUETOOTH := true
+BOARD_HAVE_BLUETOOTH_QCOM := true
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(DEVICE_PATH)/bluetooth
+BLUETOOTH_HCI_USE_MCT := true
 
 # Board
 TARGET_BOARD_PLATFORM := msm8909
