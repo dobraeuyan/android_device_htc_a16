@@ -27,7 +27,7 @@ Front Camera | 5 MP
 | **Chipset**               | :heavy_check_mark: |
 | **Memory**                | :heavy_check_mark: |
 | **Storage**               | :heavy_check_mark: |
-| **MicroSD**               | |
+| **MicroSD**               | :heavy_check_mark: |
 | **Battery**               | :heavy_check_mark: |
 | **Display**               | :heavy_check_mark: |
 | **Touchscreen**           | :heavy_check_mark: |
@@ -37,6 +37,7 @@ Front Camera | 5 MP
 | **Camera Photos**         | Partially |
 | **Videocamera**           | |
 | **Audio**                 | :heavy_check_mark: |
+| **Jack**                  | :heavy_check_mark: |
 | **Microphone**            | :heavy_check_mark: |
 | **Vibration**             | :heavy_check_mark: |
 | **USB**                   | :heavy_check_mark: |
@@ -46,7 +47,7 @@ Front Camera | 5 MP
 | **Buttons**               | :heavy_check_mark: |
 | **Proximity Sensor**      | :heavy_check_mark: |
 | **Ambient Light Sensor**  | :heavy_check_mark: |
-| **Accelerometer**         | |
+| **Rotation**              | |
 | **Thermal**               | :heavy_check_mark: |
 | **FM Radio**              | |
 | **NFC**                   | :heavy_check_mark: |
