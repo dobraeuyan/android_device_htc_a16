@@ -240,37 +240,26 @@ audio.offload.video=false
 # System props for ALOGV
 htc.audio.debug.printlow=0
 
-
-# system prop for Bluetooth Dialup Networking
+# System props for Bluetooth
 ro.qualcomm.bluetooth.dun=false
-
-# system prop for Bluetooth FTP profile
 ro.qualcomm.bluetooth.ftp=true
-
-# system property for Bluetooth Handsfree Profile Wide Band Speech
 ro.qualcomm.bluetooth.hfp.wbs=false
-
-
-#system prop for Bluetooth hci transport
+ro.qualcomm.bluetooth.opp=true
+ro.qualcomm.bluetooth.hfp=true
+ro.qualcomm.bluetooth.hsp=true
+ro.qualcomm.bluetooth.pbap=true
+ro.qualcomm.bluetooth.nap=true
 ro.qualcomm.bt.hci_transport=smd
-
-# system prop for requesting Master role in incoming Bluetooth connection.
 ro.bluetooth.request.master=true
-
-# system prop for Bluetooth Auto connect for remote initated connections
 ro.bluetooth.remote.autoconnect=true
-
-# system property for Bluetooth Hardware information
 ro.product.bluetooth=4.0
-
-# system property for qcom Bluetooth stack
 ro.qc.bluetooth.stack=bluedroid
-
-# system property for bdaddr
 ro.bt.bdaddr_path = /sys/module/htc_bdaddress/parameters/bdaddress
-
-# BLE TAG (HtcBluetoothLeProfiles)
 ro.bt.ble_tag = 1
+
+# system property for Bluetooth SIM Access Profile
+ro.htc.bluetooth.sap=true
+qcom.bluetooth.soc=smd
 
 # system props for display
 ro.sf.lcd_density=320
@@ -286,16 +275,12 @@ persist.hwc.enable_vds=0
 #
 
 # NFC
-setprop debug.nfc.fw_download "true"
-setprop debug.nfc.fw_boot_download "false"
+debug.nfc.fw_download=true
+debug.nfc.fw_boot_download=false
 
 # Default network type.
 # 9 => GSM/UMTS/LTE mode preferred.
 ro.telephony.default_network=22
-
-# system property for Bluetooth SIM Access Profile
-ro.htc.bluetooth.sap=true
-qcom.bluetooth.soc=smd
 
 #
 # build.prop from htc_a16ul
@@ -318,6 +303,9 @@ persist.rcs.supported=1
 ro.com.android.dataroaming=false
 ro.vendor.extension_library=libqti-perfd-client.so
 ro.gps.agps_provider=1
+
+# Temporally enable subsystem debug
+persist.sys.ssr.debug=1
 
 # Other
 ro.oem_unlock_supported=0

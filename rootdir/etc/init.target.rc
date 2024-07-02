@@ -1,6 +1,5 @@
 on fs
     wait /dev/block/bootdevice
-    wait /dev/device-mapper
     mount_all fstab.qcom
     swapon_all fstab.qcom
     write /proc/sys/vm/swappiness 100

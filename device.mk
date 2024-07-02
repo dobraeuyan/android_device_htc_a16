@@ -32,7 +32,6 @@ PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_video_le.xml:system/etc/media_codecs_google_video_le.xml \
-    frameworks/native/data/etc/android.software.midi.xml:system/etc/permissions/android.software.midi.xml \
     $(LOCAL_PATH)/configs/audio/audio_policy.conf:system/etc/audio_policy.conf \
     $(LOCAL_PATH)/configs/audio/mixer_paths.xml:system/etc/mixer_paths.xml \
     $(LOCAL_PATH)/configs/audio/sound_trigger_mixer_paths.xml:system/etc/sound_trigger_mixer_paths.xml \
@@ -68,7 +67,6 @@ PRODUCT_PACKAGES += \
     Snap
     
 PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
     frameworks/native/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml
 
 # Dalvik properties
@@ -117,23 +115,17 @@ PRODUCT_PACKAGES += \
     init.hosd_fusion.usb.rc \
     init.hosd.htc_a16.rc \
     init.hosd.usb.rc \
-    init.htc_a16.rc \
-    init.mdm.sh \
     init.network.sh \
     init.power.rc \
-    init.qcom.bms.sh \
     init.qcom.class_core.sh \
     init.qcom.early_boot.sh \
-    init.qcom.factory.rc \
     init.qcom.firmware_links.sh \
     init.qcom.rc \
     init.qcom.sh \
-    init.qcom.syspart_fixup.sh \
     init.qcom.usb.rc \
     init.recovery.common.rc \
     init.recovery.htc_a16.rc \
     init.target.rc \
-    init.usbdiag.sh \
     ueventd.htc_a16.rc \
     ueventd.qcom.rc
 
@@ -141,21 +133,13 @@ PRODUCT_PACKAGES += \
     hcidump.sh \
     hsic.control.bt.sh \
     init.ath3k.bt.sh \
-    init.crda.sh \
-    init.mocana.sh \
-    init.qcom.audio.sh \
     init.qcom.bt.sh \
     init.qcom.coex.sh \
     init.qcom.debug.sh \
-    init.qcom.efs.sync.sh \
     init.qcom.fm.sh \
-    init.qcom.modem_links.sh \
     init.qcom.post_boot.sh \
-    init.qcom.sdio.sh \
     init.qcom.uicc.sh \
-    init.qcom.wifi.sh \
-    init.qti.ims.sh \
-    qca6234-service.sh
+    init.qti.ims.sh
 
 # IRSC
 PRODUCT_COPY_FILES += \
@@ -205,8 +189,6 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_COPY_FILES += \
     packages/apps/Nfc/migrate_nfc.txt:system/etc/updatecmds/migrate_nfc.txt \
-    frameworks/native/data/etc/com.nxp.mifare.xml:system/etc/permissions/com.nxp.mifare.xml \
-    frameworks/native/data/etc/com.android.nfc_extras.xml:system/etc/permissions/com.android.nfc_extras.xml \
     frameworks/native/data/etc/android.hardware.nfc.xml:system/etc/permissions/android.hardware.nfc.xml \
     frameworks/native/data/etc/android.hardware.nfc.hce.xml:system/etc/permissions/android.hardware.nfc.hce.xml \
     $(LOCAL_PATH)/configs/nfc/libnfc-brcm.conf:system/etc/libnfc-brcm.conf \
@@ -267,7 +249,7 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
     $(LOCAL_PATH)/configs/sensors/hals.conf:system/etc/sensors/hals.conf
 
-# TODO: Check sensors on stock
+
 
 # Shims
 PRODUCT_PACKAGES += \
