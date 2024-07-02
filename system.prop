@@ -15,8 +15,12 @@ persist.audio.fluence.speaker=true
 
 rec.playback.conc.disabled=true
 
+# Battery
+ro.cutoff_voltage_mv=3200
+
 # Bluetooth
 qcom.bluetooth.soc=pronto
+ro.qualcomm.bt.hci_transport=smd
 
 ro.bt.bdaddr_path=/sys/module/htc_bdaddress/parameters/bdaddress
 
@@ -24,23 +28,10 @@ ro.bluetooth.dun=true
 ro.bluetooth.hfp.ver=1.7
 ro.bluetooth.sap=true
 
-ro.qualcomm.bluetooth.dun=false
-ro.qualcomm.bluetooth.ftp=true
-ro.qualcomm.bluetooth.hfp.wbs=false
-ro.qualcomm.bluetooth.opp=true
-ro.qualcomm.bluetooth.hfp=true
-ro.qualcomm.bluetooth.hsp=true
-ro.qualcomm.bluetooth.pbap=true
-ro.qualcomm.bluetooth.nap=true
-ro.qualcomm.bt.hci_transport=smd
-
-ro.bluetooth.request.master=true
-ro.bluetooth.remote.autoconnect=true
-
-ro.product.bluetooth=4.0
-ro.qc.bluetooth.stack=bluedroid
-ro.bt.ble_tag = 1
-ro.htc.bluetooth.sap=true
+# Camera
+persist.camera.longshot.stages=1
+persist.camera.antibanding=60
+persist.camera.tuning_spec=htc
 
 # Display
 ro.qualcomm.cabl=0
@@ -51,6 +42,10 @@ ro.qcom.screencolor=1
 
 # Factory Reset Protection
 ro.frp.pst=/dev/block/bootdevice/by-name/frp
+
+# HWUI
+ro.hwui.text_large_cache_height=2048
+ro.hwui.renderer.disable_opaque=true
 
 # Media
 drm.service.enabled=true
@@ -72,8 +67,9 @@ persist.rild.nitz_short_ons_2=
 persist.rild.nitz_short_ons_3=
 
 # Perf
+ro.config.max_starting_bg=8
 ro.vendor.extension_library=libqti-perfd-client.so
-ro.core_ctl_min_cpu=2
+ro.core_ctl_min_cpu=1
 ro.core_ctl_max_cpu=4
 
 # Radio
@@ -103,13 +99,10 @@ debug.egl.hw=1
 debug.composition.type=dyn
 debug.hwc.dynThreshold=2.5
 debug.mdpcomp.logs=0
-ro.hwui.renderer.disable_opaque=true
-dalvik.vm.zygotemaxfailedboots=5
+
 dev.pm.dyn_samplingrate=1
 persist.demo.hdmirotationlock=false
 
-#enable dirty rect
-debug.sf.swaprect=1
 #enable app buffer composition
 debug.sf.hwc.canUseABC=1
 # disable vsync for cpu render apps
@@ -158,11 +151,6 @@ ro.storage_structure = 10
 # not support encryption: 0x0 block level: 0x1 file level: 0x2
 ro.storage_encryption_type = 2
 
-# System property for Camera
-# System prop to allocate Reprocess buffer as "1"
-# during Longshot usecase
-persist.camera.longshot.stages=1
-
 # dirty ratio value when enable ums
 ro.sys.umsdirtyratio=20
 
@@ -181,9 +169,6 @@ voice.playback.conc.disabled=true
 voice.record.conc.disabled=true
 voice.voip.conc.disabled=true
 
-# set max background services
-ro.config.max_starting_bg=8
-
 #property to enable user to access Google WFD settings
 persist.debug.wfd.enable=1
 #propery to enable VDS WFD solution
@@ -198,9 +183,6 @@ audio.dolby.ds2.enabled=true
 #property to change touch screen resolution
 persist.sys.synaptics_dsx.qhd=false
 
-#HWUI properties
-ro.hwui.text_large_cache_height=2048
-
 # enable sta proxy bydefault
 persist.mm.sta.enable=1
 
@@ -214,23 +196,9 @@ ro.sys.fw.trim_enable_memory=1073741824
 #Enable Delay service restart
 ro.am.reschedule_service=true
 
-# set cutoff voltage to 3200mV
-ro.cutoff_voltage_mv=3200
-
-#
-# system.prop for HTC common
-#
-
-ro.hardware.power = htc
-
 #
 # system.prop for htc_a16
 #
-
-# Support HW rest
-ro.product.hwreset = 1
-ro.product.hwreset.timer1 = 6
-ro.product.hwreset.timer2 = 9
 
 #property to enable DS2 dap
 audio.dolby.ds2.enabled=false
@@ -261,8 +229,6 @@ persist.htc.audio.dqlog.dci=1
 htc.audio.debug.printlow=0
 
 # system props for display
-
-ro.product.display_resolution=5.0 inch 720p resolution
 debug.hwc.dynThreshold=2.5
 debug.hwc.dynThresholdYuv=2.5
 
@@ -270,19 +236,11 @@ debug.hwc.dynThresholdYuv=2.5
 persist.hwc.enable_vds=0
 
 #
-# system.prop for htc_a16ul
-#
-
-#
 # build.prop from htc_a16ul
 #
 
-
-
 persist.preload.common=0
 persist.zygote.preload_threads=3
-persist.camera.antibanding=60
-persist.camera.tuning_spec=htc
 persist.ims.disableDebugLogs=1
 persist.ims.disableADBLogs=1
 persist.ims.disableQXDMLogs=1

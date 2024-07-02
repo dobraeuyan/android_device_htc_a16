@@ -4,7 +4,6 @@ $(call inherit-product, frameworks/native/build/phone-hdpi-2048-dalvik-heap.mk)
 PRODUCT_PACKAGES += \
     fs_config_files
 
-
 #ANT+ stack
 PRODUCT_PACKAGES += \
    AntHalService \
@@ -48,8 +47,6 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml \
     frameworks/native/data/etc/android.hardware.bluetooth.xml:system/etc/permissions/android.hardware.bluetooth.xml
     
-
-
 # Browser
 PRODUCT_PACKAGES += \
     Gello
@@ -125,8 +122,6 @@ PRODUCT_PACKAGES += \
     init.qcom.usb.rc \
     init.recovery.common.rc \
     init.recovery.htc_a16.rc \
-    init.target.rc \
-    ueventd.htc_a16.rc \
     ueventd.qcom.rc
 
 PRODUCT_PACKAGES += \
@@ -227,7 +222,6 @@ PRODUCT_PACKAGES += \
     netmgr_config.xml \
     qmi_config.xml
 
-
 # Qualcomm dependencies
 PRODUCT_PACKAGES += \
     libtinyxml
@@ -248,8 +242,6 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.sensor.light.xml:system/etc/permissions/android.hardware.sensor.light.xml \
     frameworks/native/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
     $(LOCAL_PATH)/configs/sensors/hals.conf:system/etc/sensors/hals.conf
-
-
 
 # Shims
 PRODUCT_PACKAGES += \
