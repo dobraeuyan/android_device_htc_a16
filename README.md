@@ -20,6 +20,11 @@ Front Camera | 5 MP
 
 ![HTC Desire 530](https://fdn2.gsmarena.com/vv/pics/htc/htc-a16-desire-530-1.jpg "HTC Desire 530")
 
+| Codename                  | Variant          |
+|---------------------------|-----------------|
+| **a16ul**                 | International |
+| **a16wl**                 | Verizon |
+| **a16dwgl**               | Dual SIM |
 
 
 | Feature                   | Status          |
