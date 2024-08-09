@@ -17,14 +17,12 @@ TARGET_CPU_VARIANT := cortex-a7
 BOARD_VENDOR := htc
 
 # Audio
-#USE_XML_AUDIO_POLICY_CONF := 1
 BOARD_USES_ALSA_AUDIO := true
 BOARD_SUPPORTS_SOUND_TRIGGER := false
 TARGET_ENABLE_QC_AV_ENHANCEMENTS := true
 
 # Bionic
 TARGET_LD_SHIM_LIBS := \
-    /system/lib/libcamera_client.so.so|/system/lib/libshim_camera.so \
     /system/lib/liblog.so|/system/lib/liblog_htc.so
 
 # Bluetooth
@@ -47,17 +45,6 @@ TARGET_SPECIFIC_CAMERA_PARAMETER_LIBRARY := libcamera_parameters_ext
 TARGET_HAS_LEGACY_CAMERA_HAL1 := true
 USE_DEVICE_SPECIFIC_CAMERA := true
 
-# Cryptfs_hw
-TARGET_CRYPTFS_HW_PATH := vendor/qcom/opensource/cryptfs_hw
-
-# Dexpreopt
-#ifeq ($(HOST_OS),linux)
-#  ifeq ($(TARGET_BUILD_VARIANT),userdebug)
-#    WITH_DEXPREOPT := true
-#    DEX_PREOPT_DEFAULT := nostripping
-#  endif
-#endif
-
 # Display
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 TARGET_FORCE_HWC_FOR_VIRTUAL_DISPLAYS := true
@@ -67,7 +54,6 @@ TARGET_USES_C2D_COMPOSITION := false
 TARGET_USES_ION := true
 TARGET_USES_NEW_ION_API :=true
 TARGET_USES_QCOM_BSP := true
-TARGET_USES_PCI_RCS := false
 TARGET_CONTINUOUS_SPLASH_ENABLED := true
 USE_OPENGL_RENDERER := true
 
@@ -81,14 +67,9 @@ OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
 # EGL
 BOARD_EGL_CFG := $(DEVICE_PATH)/configs/egl.cfg
 
-#Encryption
+# Encryption
 TARGET_HW_DISK_ENCRYPTION := true
 TARGET_HW_KEYMASTER_V03 := true
-
-#FM Radio
-TARGET_QCOM_NO_FM_FIRMWARE := true
-BOARD_HAVE_QCOM_FM := true
-AUDIO_FEATURE_ENABLED_FM_POWER_OPT := true
 
 # Filesystem
 BOARD_FLASH_BLOCK_SIZE := 131072
@@ -101,28 +82,27 @@ BOARD_USERDATAIMAGE_PARTITION_SIZE := 10849598976
 
 TARGET_USERIMAGES_USE_EXT4 := true
 BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
+BOARD_PERSISTIMAGE_FILE_SYSTEM_TYPE := ext4
 
-# Hardware
-#BOARD_HARDWARE_CLASS += hardware/cyanogen/cmhw
-#BOARD_USES_CYANOGEN_HARDWARE := true
+# FM Radio
+TARGET_QCOM_NO_FM_FIRMWARE := true
+BOARD_HAVE_QCOM_FM := true
+AUDIO_FEATURE_ENABLED_FM_POWER_OPT := true
 
 # Init
-TARGET_RECOVERY_DEVICE_MODULES := libinit_msm8909
-TARGET_INIT_VENDOR_LIB := libinit_msm8909
 TARGET_PLATFORM_DEVICE_BASE := /devices/soc.0/
+TARGET_INIT_VENDOR_LIB := libinit_a16
+TARGET_RECOVERY_DEVICE_MODULES := libinit_a16
 
 # Kernel
-TARGET_COMPILE_WITH_MSM_KERNEL := true
+BOARD_KERNEL_BASE := 0x80000000
+BOARD_KERNEL_CMDLINE := androidboot.console=ttyHSL0 androidboot.hardware=qcom ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci vmalloc=400m androidboot.selinux=permissive
+BOARD_KERNEL_IMAGE_NAME := zImage-dtb
+BOARD_KERNEL_PAGESIZE := 2048
+BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02000000 --tags_offset 0x01e00000 --board boot:0
+TARGET_KERNEL_ARCH := arm
 TARGET_KERNEL_SOURCE := kernel/htc/a16
 TARGET_KERNEL_CONFIG := lineage_a16_defconfig
-
-BOARD_KERNEL_BASE := 0x80000000
-BOARD_KERNEL_PAGESIZE := 2048
-BOARD_KERNEL_TAGS_OFFSET := 0x01e00000
-BOARD_RAMDISK_OFFSET := 0x02000000
-BOARD_MKBOOTIMG_ARGS :=  --ramdisk_offset $(BOARD_RAMDISK_OFFSET) --tags_offset $(BOARD_KERNEL_TAGS_OFFSET) --dt $(DEVICE_PATH)/dt.img --board boot:0
-BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci lpm_levels.sleep_disabled=1 vmalloc=400m  androidboot.selinux=permissive
-BOARD_NAME := boot:0
 
 # Keymaster
 TARGET_PROVIDES_KEYMASTER := true
@@ -139,6 +119,9 @@ MALLOC_SVELTE := true
 # NFC
 BOARD_NFC_CHIPSET := pn548
 
+# OTA
+TARGET_OTA_ASSERT_DEVICE := a16,a16wl,a16ul,a16dwgl,htc_a16,htc_a16wl,htc_a16ul,htc_a16dwgl
+
 # Peripheral manager
 TARGET_PER_MGR_ENABLED := true
 
@@ -148,25 +131,21 @@ TARGET_POWERHAL_VARIANT := qcom
 # Properties
 TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
 
-# Protobuf
-PROTOBUF_SUPPORTED := false
-
 # Qualcomm
 BOARD_USES_QCOM_HARDWARE := true
-#BOARD_USES_QC_TIME_SERVICES := true
 
 # Recovery
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/rootdir/etc/recovery.fstab
 
 # RIL
-#TARGET_RIL_VARIANT := caf
+TARGET_RIL_VARIANT := caf
 #BOARD_PROVIDES_LIBRIL := true
 
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
-    
-#BOARD_SEPOLICY_DIRS += \
-#    $(DEVICE_PATH)/sepolicy
+
+BOARD_SEPOLICY_DIRS += \
+    $(DEVICE_PATH)/sepolicy
     
 # Sensors
 USE_SENSOR_MULTI_HAL := true
@@ -186,11 +165,10 @@ BOARD_HOSTAPD_PRIVATE_LIB   := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
 TARGET_PROVIDES_WCNSS_QMI   := true
 TARGET_USES_WCNSS_CTRL      := true
 TARGET_USES_QCOM_WCNSS_QMI  := true
+WIFI_DRIVER_MODULE_PATH     := /system/lib/modules/wlan.ko
+WIFI_DRIVER_MODULE_NAME     := wlan
 WIFI_DRIVER_FW_PATH_AP      := "ap"
 WIFI_DRIVER_FW_PATH_STA     := "sta"
-
-# OTA
-TARGET_OTA_ASSERT_DEVICE := a16,16uhl,a16whl,a16wl,a16ul,htc_a16uhl,htc_a16whl,htc_a16wl,htc_a16ul
 
 # inherit from the proprietary version
 -include vendor/htc/a16/BoardConfigVendor.mk
