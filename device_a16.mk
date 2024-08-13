@@ -17,10 +17,8 @@ $(call inherit-product, device/common/gps/gps_us_supl.mk)
 
 $(call inherit-product-if-exists, vendor/htc/a16/a16-vendor.mk)
 
-DEVICE_PACKAGE_OVERLAYS += device/htc/a16/overlay
-
 # Inherit from those products. Most specific first.
-$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 $(call inherit-product, device/htc/a16/device.mk)
 
 # Discard inherited values and use our own instead.

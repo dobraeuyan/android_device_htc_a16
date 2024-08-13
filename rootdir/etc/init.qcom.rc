@@ -29,10 +29,16 @@ import init.qcom.usb.rc
 
 on early-init
     symlink /data/tombstones /tombstones
-
+    
+    mkdir /firmware 0771 system system
+    mkdir /system 0777 root root
+    write /sys/kernel/mm/ksm/pages_to_scan 100
+    write /sys/kernel/mm/ksm/sleep_millisecs 500
+    write /sys/kernel/mm/ksm/run 1
+    write /sys/kernel/mm/ksm/deferred_timer 1
+    
     mkdir /carrier 0771 radio radio
     chown system system /firmware/image
-    mkdir /firmware 0771 system system
     mkdir /firmware/radio 0771 system system
     mkdir /firmware/wcnss 0771 system system
     mkdir /firmware/image 0771 system system
@@ -42,9 +48,8 @@ on early-init
     chmod 0755 /sys/kernel/debug
     
 on init
-    export LD_PRELOAD "/system/lib/liblog_htc.so"
-    #export LD_SHIM_LIBS "/system/lib/libcamera_client.so|/system/lib/libshim_camera.so"
-   
+    export LD_SHIM_LIBS "/system/lib/liblog.so|/system/lib/liblog_htc.so"
+
     # Set permissions for persist partition
     mkdir /persist 0771 system system
 
@@ -58,22 +63,8 @@ on fs
     mount_all fstab.qcom
     swapon_all fstab.qcom
     write /proc/sys/vm/swappiness 100
-    verity_update_state
-
-    wait /dev/block/bootdevice/by-name/misc
-    inithdf /proc/driver/hdf
-
-    wait /system/bin/sh
-    class_start firmware-link
-    wait /firmware/image/.radio_done
-    wait /firmware/image/.wcnss_done
-    wait /firmware/image/.keymaste_done
 
     chown system /sys/process/task_comm_list
-    insmod /system/lib/modules/moc_platform_mod.ko.3.10
-    insmod /system/lib/modules/moc_crypto.ko.3.10
-    insmod /system/lib/modules/moc_crypto_api_tmpl.ko.3.10
-    insmod /system/lib/modules/texfat.ko
 
 # msm specific files that need to be created on /data
 on post-fs-data
@@ -433,12 +424,6 @@ on property:bluetooth.isEnabled=true
     start btwlancoex
     write /sys/class/bluetooth/hci0/idle_timeout 7000
 
-on property:bluetooth.sap.status=running
-    start bt-sap
-
-on property:bluetooth.sap.status=stopped
-    stop bt-sap
-
 on property:bluetooth.dun.status=running
     start bt-dun
 
@@ -509,24 +494,10 @@ on property:bluetooth.hciattach=true
 on property:bluetooth.hciattach=false
     setprop bluetooth.status off
 
-service hciattach_ath3k /system/bin/sh /system/etc/init.ath3k.bt.sh
-     class late_start
-     user bluetooth
-     group system bluetooth net_bt_admin misc
-     disabled
-     oneshot
-
 service bt-dun /system/bin/dun-server /dev/smd7 /dev/rfcomm0
     class late_start
     user bluetooth
     group bluetooth net_bt_admin inet
-    disabled
-    oneshot
-
-service bt-sap /system/bin/sapd 15
-    user bluetooth
-    group bluetooth net_bt_admin radio
-    class late_start
     disabled
     oneshot
 
@@ -742,12 +713,6 @@ on property:ro.fuse_sdcard=true
 on nonencrypted
     setprop ro.fuse_sdcard ${persist.fuse_sdcard}
 
-service hcidump /system/bin/sh /system/etc/hcidump.sh
-    user bluetooth
-    group bluetooth system net_bt_admin net_admin
-    disabled
-    oneshot
-
 service charger /charger
     class charger
     seclabel u:r:healthd:s0
@@ -775,19 +740,7 @@ service fidodaemon /system/vendor/bin/fidodaemon
     class late_start
     user system
     group system
-
-service fwnk-radio /system/bin/sh /init.qcom.firmware_links.sh /firmware/radio /firmware/image "modem* mba*" radio
-    class firmware-link
-    oneshot
-
-service fwnk-wcnss  /system/bin/sh /init.qcom.firmware_links.sh /firmware/wcnss /firmware/image "wcnss*" wcnss
-    class firmware-link
-    oneshot
-
-service fwnk-sec  /system/bin/sh /init.qcom.firmware_links.sh /system/vendor/firmware /firmware/image "keymaste*" keymaste
-    class firmware-link
-    oneshot
-
+    
 service wcnss-service /system/bin/wcnss_service
     class main
     user system

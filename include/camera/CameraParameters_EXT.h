@@ -60,6 +60,8 @@ public:
     int getOrientation() const;
     void setOrientation(int orientation);
 
+    static const char SCENE_MODE_AUTOHDR[];
+    static const char SCENE_MODE_AUTOHDR_BURST[];
     static const char SCENE_MODE_BURST[];
     static const char SCENE_MODE_MANUAL[];
     static const char SCENE_MODE_PANORAMA[];
@@ -90,6 +92,7 @@ public:
     static const char KEY_FORCE_USE_AUDIO_ENABLED[];
     static const char KEY_SLOW_MOTION_VERSION[];
     static const char KEY_SAVE_MIRROR[];
+    static const char KEY_SMILEINFO_BYFACE_SUPPORTED[];
     static const char DENOISE_ON[];
     static const char DENOISE_OFF[];
 

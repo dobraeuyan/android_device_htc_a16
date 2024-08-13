@@ -1,59 +1,126 @@
 # Audio
-audio.offload.buffer.size.kb=64
-audio.offload.gapless.enabled=false
-audio.offload.min.duration.secs=30
-audio.offload.video=false
-
-ro.qc.sdk.audio.fluencetype=none
-ro.qc.sdk.audio.ssr=false
-
-use.voice.path.for.pcm.voip=true
-
 persist.audio.fluence.voicecall=true
 persist.audio.fluence.voicerec=false
 persist.audio.fluence.speaker=true
-
+persist.htc.audio.dqlog.dci=1
+ro.qc.sdk.audio.fluencetype=none
+ro.qc.sdk.audio.ssr=false
+persist.speaker.prot.enable=false
+tunnel.audio.encode=false
+audio.offload.buffer.size.kb=64
+audio.offload.min.duration.secs=30
+audio.offload.video=false
+audio.offload.gapless.enabled=false
+voice.playback.conc.disabled=true
+voice.record.conc.disabled=false
+voice.voip.conc.disabled=true
 rec.playback.conc.disabled=true
+use.voice.path.for.pcm.voip=true
+sys.audio.init=false
+htc.audio.swalt.enable=1
+htc.audio.swalt.mingain=23000
+htc.audio.global.state=0
+htc.audio.global.profile=0
+htc.audio.q6.topology=0
+htc.audio.global.speaker=0
+htc.audio.srs.defaultbundleHS=HS250
+htc.audio.skiplowlatency=7
+
+htc.audio.debug.printlow=0
 
 # Battery
 ro.cutoff_voltage_mv=3200
 
 # Bluetooth
-qcom.bluetooth.soc=pronto
-ro.qualcomm.bt.hci_transport=smd
-
-ro.bt.bdaddr_path=/sys/module/htc_bdaddress/parameters/bdaddress
-
 ro.bluetooth.dun=true
 ro.bluetooth.hfp.ver=1.7
 ro.bluetooth.sap=true
+
+ro.bt.bdaddr_path=/sys/module/htc_bdaddress/parameters/bdaddress
+
+qcom.bluetooth.soc=pronto
+ro.qualcomm.bt.hci_transport=smd
+ro.qualcomm.bluetooth.opp=true
+ro.qualcomm.bluetooth.hfp=true
+ro.qualcomm.bluetooth.hsp=true
+ro.qualcomm.bluetooth.pbap=true
+ro.qualcomm.bluetooth.ftp=true
+ro.qualcomm.bluetooth.nap=true
+        
+# B Service Adj Transition
+ro.sys.fw.bservice_enable=true
+ro.sys.fw.bservice_limit=5
+ro.sys.fw.bservice_age=5000
 
 # Camera
 persist.camera.longshot.stages=1
 persist.camera.antibanding=60
 persist.camera.tuning_spec=htc
 
-# Display
-ro.qualcomm.cabl=0
-ro.opengles.version=196608
-ro.sf.lcd_density=320
+# CNE Module
+persist.cne.feature=1
 
+# Dalvik
+dalvik.vm.heapsize=512m
+dalvik.vm.heapstartsize=8m
+dalvik.vm.heapgrowthlimit=192m
+dalvik.vm.heaptargetutilization=0.75
+dalvik.vm.heapminfree=512k
+dalvik.vm.heapmaxfree=8m
+
+# Data Modules
+ro.use_data_netmgrd=true
+persist.data.netmgrd.qos.enable=true
+persist.data.mode=concurrent
+
+# Delay Service Restart
+ro.am.reschedule_service=true
+
+# Display
+ro.opengles.version=196608
+ro.sf.lcd_density=290
+ro.qualcomm.cabl=0
 ro.qcom.screencolor=1
 
 # Factory Reset Protection
 ro.frp.pst=/dev/block/bootdevice/by-name/frp
 
+# FM Transmitter
+ro.fm.transmitter=false
+
+# GPS
+ro.gps.agps_provider=1
+
 # HWUI
-ro.hwui.text_large_cache_height=2048
-ro.hwui.renderer.disable_opaque=true
+ro.hwui.texture_cache_size=72
+ro.hwui.layer_cache_size=48
+ro.hwui.path_cache_size=32
+ro.hwui.gradient_cache_size=1
+ro.hwui.drop_shadow_cache_size=6
+ro.hwui.text_large_cache_width=2048
+ro.hwui.text_large_cache_height=1024
+ro.hwui.text_small_cache_width=1024
+ro.hwui.text_small_cache_height=512
+ro.hwui.r_buffer_cache_size=8
+ro.hwui.text_gamma_correction=true
 
-# Media
-drm.service.enabled=true
+# IMS
+persist.ims.disableDebugLogs=1
+persist.ims.disableADBLogs=1
+persist.ims.disableQXDMLogs=1
+persist.ims.disableIMSLogs=1
 
-# Memory
-ro.sys.fw.bservice_enable=true
-ro.sys.fw.bservice_limit=5
-ro.sys.fw.bservice_age=5000
+# MM Modules
+media.stagefright.enable-player=true
+media.stagefright.enable-http=true
+media.stagefright.enable-aac=true
+media.stagefright.enable-qcp=true
+media.stagefright.enable-fma2dp=true
+media.stagefright.enable-scan=true
+mmp.enable.3g2=true
+media.aac_51_output_enabled=true
+mm.enable.qcom_parser=262143
+media.stagefright.use-awesome=false
 
 # NITZ
 persist.rild.nitz_plmn=
@@ -66,186 +133,60 @@ persist.rild.nitz_short_ons_1=
 persist.rild.nitz_short_ons_2=
 persist.rild.nitz_short_ons_3=
 
+# Other
+qemu.hw.mainkeys=0
+ro.oem_unlock_supported=0
+ro.config.low_ram=false
+persist.fuse_sdcard=true
+ro.sys.umsdirtyratio=20
+dev.pm.dyn_samplingrate=1
+
 # Perf
 ro.config.max_starting_bg=8
 ro.vendor.extension_library=libqti-perfd-client.so
 ro.core_ctl_min_cpu=1
 ro.core_ctl_max_cpu=4
+sys.hwc.gpu_perf_mode=1
 
-# Radio
+# QDCM
+persist.tuning.qdcm=1
+
+# RIL
 rild.libpath=/system/lib/libhtc_rilhook.so
 rild.libargs=-d /dev/smd0
 ro.baseband.arch = msm
 ro.telephony.default_network=9
-
 persist.radio.fill_eons=1
-
 persist.radio.apm_sim_not_pwdn=0
 persist.radio.apm_mdm_not_pwdn=1
-
-# Other
-ro.oem_unlock_supported=0
-qemu.hw.mainkeys=0
-
-# Wi-Fi
-wifi.interface=wlan0
-
-###############################################
-
-DEVICE_PROVISIONED=1
 ril.subscription.types=NV,RUIM
-debug.sf.hw=1
-debug.egl.hw=1
-debug.composition.type=dyn
-debug.hwc.dynThreshold=2.5
-debug.mdpcomp.logs=0
+persist.rcs.supported=1
+DEVICE_PROVISIONED=1
+ro.com.android.dataroaming=false
 
-dev.pm.dyn_samplingrate=1
-persist.demo.hdmirotationlock=false
-
-#enable app buffer composition
-debug.sf.hwc.canUseABC=1
-# disable vsync for cpu render apps
-debug.cpurend.vsync=false
-#allow gpu to render widevine level3
-persist.gralloc.cp.level3=1
-
-#enable gpu perf hint
-sys.hwc.gpu_perf_mode=1
-
-# system props for the cne module
-persist.cne.feature=1
-
-#system props for the MM modules
-media.stagefright.enable-player=true
-media.stagefright.enable-http=true
-media.stagefright.enable-aac=true
-media.stagefright.enable-qcp=true
-media.stagefright.enable-fma2dp=true
-media.stagefright.enable-scan=true
-mmp.enable.3g2=true
-media.aac_51_output_enabled=true
-mm.enable.qcom_parser=262143
-# Default to AwesomePlayer
-media.stagefright.use-awesome=false
-
-# system props for the data modules
-ro.use_data_netmgrd=true
-persist.data.netmgrd.qos.enable=true
-persist.data.mode=concurrent
-
-#system props for time-services
-persist.timed.enable=true
-
-# System property for QDCM
-persist.tuning.qdcm=1
-
-#Simulate sdcard on /data/media
-persist.fuse_sdcard=true
-# ro.storage_structure: define the storage structure of this project
-# FUSE: 0x8, FAT: 0x4, SD: 0x2, INS: 0x1
-# Example: If the project has FUSE with SD card, the value should be defined as 10 (dec)
-ro.storage_structure = 10
-
-# ro.storage_encryption_type: define the storage encryption type of this project
-# not support encryption: 0x0 block level: 0x1 file level: 0x2
-ro.storage_encryption_type = 2
-
-# dirty ratio value when enable ums
-ro.sys.umsdirtyratio=20
-
-#Set for msm8909
-tunnel.audio.encode = false
-ro.config.low_ram=false
-#Buffer size in kbytes for compress offload playback
-
-#System property for FM transmitter
-ro.fm.transmitter=false
-#enable dsp gapless mode by default
-
-
-#Audio voice concurrency related flags
-voice.playback.conc.disabled=true
-voice.record.conc.disabled=true
-voice.voip.conc.disabled=true
-
-#property to enable user to access Google WFD settings
-persist.debug.wfd.enable=1
-#propery to enable VDS WFD solution
-persist.hwc.enable_vds=1
-
-#property to enable image unload by audio HAL
-sys.audio.init=false
-
-#property to enable DS2 dap
-audio.dolby.ds2.enabled=true
-
-#property to change touch screen resolution
-persist.sys.synaptics_dsx.qhd=false
-
-# enable sta proxy bydefault
+# STA Proxy
 persist.mm.sta.enable=1
 
-#Trim properties
+# Storage
+ro.sys.sdcardfs=true
+ro.boot.bootdevice=7824900.sdhci
+
+# Time Services
+persist.timed.enable=true
+
+# Trim Properties
 ro.sys.fw.use_trim_settings=true
 ro.sys.fw.empty_app_percent=50
 ro.sys.fw.trim_empty_percent=100
 ro.sys.fw.trim_cache_percent=100
 ro.sys.fw.trim_enable_memory=1073741824
 
-#Enable Delay service restart
-ro.am.reschedule_service=true
+# WiFi
+wifi.interface=wlan0
 
-#
-# system.prop for htc_a16
-#
+# WiFi Display
+persist.debug.wfd.enable=0
+persist.hwc.enable_vds=1
 
-#property to enable DS2 dap
-audio.dolby.ds2.enabled=false
-
-# System props for ALT feature
-htc.audio.swalt.enable=1
-htc.audio.swalt.mingain=23000
-
-#Audio voice concurrency related flags
-voice.playback.conc.disabled=true
-voice.record.conc.disabled=false
-voice.voip.conc.disabled=true
-
-# System props for global effect
-htc.audio.global.state=0
-htc.audio.global.profile=0
-htc.audio.q6.topology=0
-htc.audio.global.speaker=0
-htc.audio.srs.defaultbundleHS=HS250
-
-# System props for skip fast output
-htc.audio.skiplowlatency=7
-
-#Enable DQLog DCI feature for qct 8916
-persist.htc.audio.dqlog.dci=1
-
-# System props for ALOGV
-htc.audio.debug.printlow=0
-
-# system props for display
-debug.hwc.dynThreshold=2.5
-debug.hwc.dynThresholdYuv=2.5
-
-# overwrite Qualcomm enable_vds value
-persist.hwc.enable_vds=0
-
-#
-# build.prop from htc_a16ul
-#
-
-persist.preload.common=0
-persist.zygote.preload_threads=3
-persist.ims.disableDebugLogs=1
-persist.ims.disableADBLogs=1
-persist.ims.disableQXDMLogs=1
-persist.ims.disableIMSLogs=1
-persist.rcs.supported=1
-ro.com.android.dataroaming=false
-
-ro.gps.agps_provider=1
+# Widevine
+drm.service.enabled=true

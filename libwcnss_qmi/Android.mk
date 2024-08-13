@@ -15,8 +15,10 @@
 LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
-LOCAL_SRC_FILES := htc_log.c
-LOCAL_MODULE := liblog_htc
+LOCAL_SRC_FILES := wcnss_htc_client.c
+LOCAL_C_INCLUDES += $(call project-path-for,wlan)/wcnss_service
+LOCAL_CFLAGS += -Wall
+LOCAL_SHARED_LIBRARIES := libc libcutils libutils liblog
+LOCAL_MODULE := libwcnss_qmi
 LOCAL_MODULE_TAGS := optional
-LOCAL_MODULE_CLASS := SHARED_LIBRARIES
 include $(BUILD_SHARED_LIBRARY)
