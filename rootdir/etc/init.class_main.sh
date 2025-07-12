@@ -42,9 +42,7 @@ esac
 
 case "$baseband" in
     "msm" | "csfb" | "svlte2a" | "mdm" | "mdm2" | "sglte" | "sglte2" | "dsda2" | "unknown" | "dsda3")
-    start qmuxd
     start ipacm-diag
-    start ipacm
     case "$baseband" in
         "svlte2a" | "csfb")
           start qmiproxy
@@ -71,11 +69,9 @@ case "$baseband" in
 
     case "$datamode" in
         "tethered")
-            start qti
             start port-bridge
             ;;
         "concurrent")
-            start qti
             if [ "$netmgr" = "true" ]; then
                 start netmgrd
             fi

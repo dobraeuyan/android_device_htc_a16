@@ -1,0 +1,1 @@
+allow system_server sensors_device:chr_file { read write open ioctl };

@@ -33,24 +33,24 @@
   <item name="screen.full">261</item>
   <!-- Different CPU speeds as reported in
         /sys/devices/system/cpu/cpu0/cpufreq/stats/time_in_state -->
-   <array name="cpu.speeds">
-       <value>200000</value> <!-- 200 MHz CPU speed -->
-       <value>400000</value> <!-- 400 MHz CPU speed -->
-       <value>533333</value> <!-- 533 MHz CPU speed -->
-       <value>800000</value> <!-- 800 MHz CPU speed -->
-       <value>998400</value> <!-- 998 MHz CPU speed -->
-       <value>1094400</value> <!-- 1094 MHz CPU speed -->
-       <value>1190400</value> <!-- 1190 MHz CPU speed -->
-   </array>
-   <!-- Current at each CPU speed, as per 'cpu.speeds' -->
-   <array name="cpu.active">
-       <value>66</value>
-       <value>115</value>
-       <value>178</value>
-       <value>257</value>
-       <value>330</value>
-       <value>407</value>
-       <value>438</value>
-   </array>
+  <array name="cpu.speeds">
+      <value>200000</value>
+      <value>400000</value>
+      <value>533333</value>
+      <value>800000</value>
+      <value>998400</value>
+      <value>1094400</value>
+      <value>1190400</value>
+  </array>
+  <!-- Current at each CPU speed, as per 'cpu.speeds' -->
+  <array name="cpu.active">
+      <value>66</value>
+      <value>115</value>
+      <value>178</value>
+      <value>257</value>
+      <value>330</value>
+      <value>407</value>
+      <value>438</value>
+  </array>
   <item name="battery.capacity">2200</item>
 </device>

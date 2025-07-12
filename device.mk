@@ -26,6 +26,7 @@ PRODUCT_PACKAGES += \
     libaudioroute \
     audio.a2dp.default \
     audio.primary.msm8909 \
+    audio_policy.msm8909 \
     audio.r_submix.default \
     audio.usb.default \
     tinymix
@@ -40,9 +41,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/audio/mixer_paths.xml:system/etc/mixer_paths.xml \
     $(LOCAL_PATH)/configs/audio/sound_trigger_mixer_paths.xml:system/etc/sound_trigger_mixer_paths.xml \
     $(LOCAL_PATH)/configs/audio/sound_trigger_platform_info.xml:system/etc/sound_trigger_platform_info.xml
-
-PRODUCT_PROPERTY_OVERRIDES += \
-    audio.offload.disable=1
 
 # Bluetooth
 PRODUCT_COPY_FILES += \
@@ -129,7 +127,7 @@ PRODUCT_PACKAGES += \
     init.qcom.sh \
     init.qcom.usb.rc \
     init.recovery.common.rc \
-init.recovery.htc_a16.rc \
+    init.recovery.htc_a16.rc \
     ueventd.qcom.rc
 
 PRODUCT_PACKAGES += \
@@ -138,8 +136,7 @@ PRODUCT_PACKAGES += \
     init.qcom.debug.sh \
     init.qcom.fm.sh \
     init.qcom.post_boot.sh \
-    init.qcom.uicc.sh \
-    init.qti.ims.sh
+    init.qcom.uicc.sh
 
 # IRSC
 PRODUCT_COPY_FILES += \
@@ -152,10 +149,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/keylayout/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl \
     $(LOCAL_PATH)/configs/keylayout/synaptics_dsx.kl:system/usr/keylayout/synaptics_dsx.kl \
     $(LOCAL_PATH)/configs/keylayout/synaptics_rmi4_i2c.kl:system/usr/keylayout/synaptics_rmi4_i2c.kl
-
-# Lights
-PRODUCT_PACKAGES += \
-    lights.msm8909
 
 # Media
 PRODUCT_PACKAGES += \
@@ -171,8 +164,7 @@ PRODUCT_PACKAGES += \
     libOmxVdec \
     libOmxVenc \
     libextmedia_jni \
-    libOmxVdecHevc \
-    qcmediaplayer
+    libOmxVdecHevc
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/media/media_profiles_8909.xml:system/etc/media_profiles.xml \
@@ -192,7 +184,6 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.nfc.xml:system/etc/permissions/android.hardware.nfc.xml \
     frameworks/native/data/etc/android.hardware.nfc.hce.xml:system/etc/permissions/android.hardware.nfc.hce.xml \
     frameworks/native/data/etc/com.android.nfc_extras.xml:system/etc/permissions/com.android.nfc_extras.xml \
-    $(LOCAL_PATH)/configs/nfc/libnfc-brcm.conf:system/etc/libnfc-brcm.conf \
     $(LOCAL_PATH)/configs/nfc/libnfc-nxp.conf:system/etc/libnfc-nxp.conf \
     $(LOCAL_PATH)/configs/nfc/nfcee_access.xml:system/etc/nfcee_access.xml \
     $(LOCAL_PATH)/configs/nfc/nfcscc_access.xml:system/etc/nfcscc_access.xml \
@@ -276,7 +267,7 @@ PRODUCT_PACKAGES += \
     libwpa_client \
     wpa_supplicant \
     wpa_supplicant.conf
-    
+
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml \
     frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \

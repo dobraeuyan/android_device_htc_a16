@@ -46,9 +46,9 @@ Front Camera | 5 MP
 | **Buttons**               | :heavy_check_mark: |
 | **Proximity Sensor**      | :heavy_check_mark: |
 | **Ambient Light Sensor**  | :heavy_check_mark: |
-| **Rotation**              | |
+| **Rotation**              | :heavy_check_mark: |
 | **Thermal**               | :heavy_check_mark: |
-| **FM Radio**              | |
+| **FM Radio**              | :heavy_check_mark: |
 | **NFC**                   | :heavy_check_mark: |
 | **SELinux enforced**      | |
 

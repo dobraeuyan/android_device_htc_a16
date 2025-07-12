@@ -61,7 +61,6 @@
         </MediaCodec>
     </Encoders>
     <Decoders>
-
         <!-- Audio Software  -->
         <!-- HTC_AUD_MARK
         <MediaCodec name="OMX.qti.audio.decoder.flac" type="audio/flac" />

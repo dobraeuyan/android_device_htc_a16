@@ -1,1 +1,3 @@
 allow init debugfs:dir mounton;
+allow init firmware_file:dir search;
+allow init firmware_file:file { read open getattr };

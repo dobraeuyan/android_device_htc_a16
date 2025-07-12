@@ -21,7 +21,7 @@ TARGET_SCREEN_WIDTH := 720
 # Release name
 PRODUCT_RELEASE_NAME := a16
 
-# Inherit some common CM stuff.
+# Inherit some common Lineage stuff.
 $(call inherit-product, vendor/cm/config/common_full_phone.mk)
 
 # Inherit device configuration
