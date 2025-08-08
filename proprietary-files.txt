@@ -453,23 +453,6 @@ vendor/lib/libNimsWrap.so
 
 # DRM
 bin/qseecomd
-vendor/lib/libQSEEComAPI.so
-vendor/lib/libdrmfs.so
-vendor/lib/libdrmtime.so
-vendor/lib/librpmb.so
-vendor/lib/libssd.so
-vendor/lib/libwvdrm_L3.so
-vendor/lib/libwvm.so
-vendor/lib/libWVStreamControlAPI_L3.so
-vendor/lib/drm/libdrmwvmplugin.so
-vendor/lib/drm/libdrmprplugin.so
-vendor/lib/mediadrm/libprmediadrmplugin.so
-vendor/lib/mediadrm/libwvdrmengine.so
-vendor/lib/mediadrm/libprmediadrmdecrypt.so
-lib/libdrmdecrypt.so
-vendor/lib/libtzplayready.so
-vendor/lib/libprdrmdecrypt.so
-vendor/lib/libtzdrmgenprov.so
 etc/firmware/widevine.b03
 etc/firmware/widevine.mdt
 etc/firmware/widevine.b02
@@ -480,6 +463,40 @@ etc/firmware/htc_drmprov.b00
 etc/firmware/htc_drmprov.b01
 etc/firmware/htc_drmprov.b03
 etc/firmware/htc_drmprov.mdt
+lib/libdrmdecrypt.so
+vendor/firmware/keymaste.mdt
+vendor/firmware/keymaste.b02
+vendor/firmware/keymaste.b00
+vendor/firmware/keymaste.b01
+vendor/firmware/keymaste.b03
+vendor/lib/libQSEEComAPI.so
+vendor/lib/libdrmfs.so
+vendor/lib/libdrmtime.so
+vendor/lib/librpmb.so
+vendor/lib/libssd.so
+vendor/lib/libwvdrm_L3.so
+vendor/lib/libwvm.so
+vendor/lib/libWVStreamControlAPI_L3.so
+vendor/lib/libtzplayready.so
+vendor/lib/libprdrmdecrypt.so
+vendor/lib/libtzdrmgenprov.so
+vendor/lib/drm/libdrmwvmplugin.so
+vendor/lib/drm/libdrmprplugin.so
+vendor/lib/mediadrm/libprmediadrmplugin.so
+vendor/lib/mediadrm/libwvdrmengine.so
+vendor/lib/mediadrm/libprmediadrmdecrypt.so
+
+# Firmware
+etc/firmware/cmnlib.b00
+etc/firmware/cmnlib.b01
+etc/firmware/cmnlib.b02
+etc/firmware/cmnlib.b03
+etc/firmware/cmnlib.mdt
+etc/firmware/tbase.b00
+etc/firmware/tbase.b01
+etc/firmware/tbase.b02
+etc/firmware/tbase.b03
+etc/firmware/tbase.mdt
 
 # GPS
 lib/hw/gps.default.so
@@ -561,8 +578,14 @@ etc/firmware/venus.mdt
 # MobiCore
 app/mcRegistry/07050500000000000000000000000000.tlbin
 app/mcRegistry/07010000000000000000000000000000.tlbin
+bin/mcDriverDaemon
+bin/mcStarter
+bin/mobicore-startup.sh
 lib/libMcClient.so
 lib/libMcRegistry.so
+
+# NFC
+vendor/firmware/libpn548_fw.so
 
 # Perf
 vendor/bin/perfd
@@ -600,7 +623,7 @@ vendor/lib/libsmemlog.so
 vendor/lib/libqmiservices_ext.so
 vendor/etc/RIDL/qdss.cfg
 
-# Radio
+# RIL
 bin/netmgrd
 bin/qmuxd
 bin/radish
@@ -611,6 +634,7 @@ lib/libhtc_rilhook.so
 lib/librmnetctl.so
 lib/librilutils.so
 lib/libril.so
+vendor/bin/qti
 vendor/lib/libhtcril_db.so
 vendor/lib/libril-qc-qmi-1.so
 vendor/lib/libril-qc-radioconfig.so
@@ -628,8 +652,6 @@ vendor/lib/libwms.so
 vendor/lib/libqti-at.so
 vendor/lib/libwqe.so
 vendor/lib/libconnctrl.so
-
-
 bin/rild
 
 # Sensors
@@ -651,60 +673,37 @@ vendor/lib/libTimeService.so
 bin/cnss-daemon
 
 # Miscellaneous
+bin/btnvtool
+bin/hci_qcomm_init
+bin/pnpmgr
+bin/vm_bms
+etc/firmware/ILP0100_IPM_Code_out.bin
+etc/firmware/ILP0100_IPM_Data_out.bin
+etc/firmware/Signedrompatch_v20.bin
+etc/firmware/Signedrompatch_v21.bin
+etc/firmware/Signedrompatch_v24.bin
+etc/firmware/Signedrompatch_v30.bin
+etc/firmware/alIAF_InData_4M2M
+etc/permissions/qcnvitems.xml
+etc/pnp.cfg
+framework/qcnvitems.jar
 lib/libprojector.so
 lib/libstlport.so
 lib/libstlport_shared.so
-vendor/lib/libstlport_sta.so
-vendor/lib/libhtc_common.so
-vendor/lib/libsd_sdk_display.so
-vendor/lib/libscve.so
-vendor/lib/libmdsprpc.so
-vendor/lib/libscve_mv.so
-vendor/lib/libCommandSvc.so
-vendor/lib/libFIDOKeyProvisioning.so
-vendor/lib/libvcel.so
-vendor/lib/libsta_lib_third_party_staproxy_sta_proxy_loader_gyp.so
-vendor/lib/libmmosal.so
-vendor/lib/libsta_lib_third_party_libsta_lib_libsta_gyp.so
-vendor/lib/libMpeg4SwEncoder.so
-vendor/lib/libChamomilePA.so
-vendor/lib/libmmipl.so
-vendor/lib/libSecureSampleAuthClient.so
-vendor/firmware/keymaste.mdt
-vendor/firmware/keymaste.b02
-vendor/firmware/keymaste.b00
-vendor/firmware/libpn548_fw.so
-vendor/firmware/keymaste.b01
-vendor/firmware/keymaste.b03
 vendor/bin/chamomile_provision
-vendor/bin/qti
-vendor/bin/fidodaemon
-etc/pnp.cfg
-etc/permissions/qcnvitems.xml
-etc/firmware/Signedrompatch_v24.bin
-etc/firmware/cmnlib.b03
-etc/firmware/cmnlib.b00
-etc/firmware/ILP0100_IPM_Code_out.bin
-etc/firmware/tbase.b02
-etc/firmware/tbase.mdt
-etc/firmware/Signedrompatch_v21.bin
-etc/firmware/Signedrompatch_v20.bin
-etc/firmware/alIAF_InData_4M2M
-etc/firmware/tbase.b01
-etc/firmware/cmnlib.b01
-etc/firmware/ILP0100_IPM_Data_out.bin
-etc/firmware/cmnlib.mdt
-etc/firmware/tbase.b03
-etc/firmware/Signedrompatch_v30.bin
-etc/firmware/tbase.b00
-etc/firmware/cmnlib.b02
-bin/mcStarter
-bin/mobicore-startup.sh
-bin/vm_bms
-bin/hci_qcomm_init
-bin/pnpmgr
-bin/btnvtool
-bin/mcDriverDaemon
-framework/qcnvitems.jar
 vendor/lib/hw/gatekeeper.msm8909.so
 vendor/lib/hw/keystore.msm8909.so
+vendor/lib/libChamomilePA.so
+vendor/lib/libCommandSvc.so
+vendor/lib/libMpeg4SwEncoder.so
+vendor/lib/libhtc_common.so
+vendor/lib/libmdsprpc.so
+vendor/lib/libmmipl.so
+vendor/lib/libmmosal.so
+vendor/lib/libscve.so
+vendor/lib/libscve_mv.so
+vendor/lib/libsd_sdk_display.so
+vendor/lib/libsta_lib_third_party_libsta_lib_libsta_gyp.so
+vendor/lib/libsta_lib_third_party_staproxy_sta_proxy_loader_gyp.so
+vendor/lib/libstlport_sta.so
+vendor/lib/libvcel.so
