@@ -20,8 +20,6 @@ Front Camera | 5 MP
 
 ![HTC Desire 530](https://fdn2.gsmarena.com/vv/pics/htc/htc-a16-desire-530-1.jpg "HTC Desire 530")
 
-
-
 | Feature                   | Status          |
 |---------------------------|-----------------|
 | **CPU**                   | :heavy_check_mark: |
@@ -33,7 +31,7 @@ Front Camera | 5 MP
 | **WiFi**                  | :heavy_check_mark: |
 | **Bluetooth**             | :heavy_check_mark: |
 | **GPS**                   | :heavy_check_mark: |
-| **Camera Photos**         | Partially |
+| **Camera Photos**         | :heavy_check_mark: |
 | **Videocamera**           | |
 | **Audio**                 | :heavy_check_mark: |
 | **Jack**                  | :heavy_check_mark: |

@@ -15,8 +15,7 @@
 LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
-LOCAL_C_INCLUDES := \
-    frameworks/av/include
+LOCAL_C_INCLUDES := frameworks/av/include
 LOCAL_SRC_FILES := \
     CameraParameters.cpp \
     CameraParameters_EXT.cpp
@@ -24,3 +23,10 @@ LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)
 LOCAL_MODULE := libcamera_parameters_ext
 LOCAL_MODULE_TAGS := optional
 include $(BUILD_STATIC_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_SRC_FILES := CameraFace.cpp
+LOCAL_MODULE := libcameraface
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_CLASS := SHARED_LIBRARIES
+include $(BUILD_SHARED_LIBRARY)

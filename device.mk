@@ -56,6 +56,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     camera.msm8909 \
     libcamera \
+    libcameraface \
     libqomx_core \
     libmm-qcamera \
     libmmcamera_interface \
@@ -120,7 +121,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     fstab.qcom \
     init.class_main.sh \
-    init.network.sh \
     init.power.rc \
     init.qcom.class_core.sh \
     init.qcom.early_boot.sh \
@@ -133,11 +133,8 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     init.qcom.bt.sh \
-    init.qcom.coex.sh \
-    init.qcom.debug.sh \
     init.qcom.fm.sh \
-    init.qcom.post_boot.sh \
-    init.qcom.uicc.sh
+    init.qcom.post_boot.sh
 
 # IRSC
 PRODUCT_COPY_FILES += \

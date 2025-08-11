@@ -33,7 +33,7 @@ bin/mm-qcamera-daemon
 lib/hw/camera.msm8909.so
 lib/libBeautyChat.so
 lib/libcamerapp.so
-lib/libcameraface.so
+#lib/libcameraface.so
 lib/libmmcamera_interface.so
 lib/libmmjpeg_interface.so
 lib/libqomx_core.so
@@ -665,6 +665,7 @@ vendor/lib/libthermalclient.so
 vendor/lib/libthermalioctl.so
 
 # Time services
+-app/TimeService/TimeService.apk
 bin/time_daemon
 vendor/lib/libtime_genoff.so
 vendor/lib/libTimeService.so
@@ -677,12 +678,6 @@ bin/btnvtool
 bin/hci_qcomm_init
 bin/pnpmgr
 bin/vm_bms
-etc/firmware/ILP0100_IPM_Code_out.bin
-etc/firmware/ILP0100_IPM_Data_out.bin
-etc/firmware/Signedrompatch_v20.bin
-etc/firmware/Signedrompatch_v21.bin
-etc/firmware/Signedrompatch_v24.bin
-etc/firmware/Signedrompatch_v30.bin
 etc/firmware/alIAF_InData_4M2M
 etc/permissions/qcnvitems.xml
 etc/pnp.cfg
