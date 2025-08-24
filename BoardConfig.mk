@@ -59,7 +59,6 @@ TARGET_NO_BOOTLOADER := true
 
 # Camera
 TARGET_SPECIFIC_CAMERA_PARAMETER_LIBRARY := libcamera_parameters_ext
-TARGET_HAS_LEGACY_CAMERA_HAL1 := true
 USE_DEVICE_SPECIFIC_CAMERA := true
 
 # Display
@@ -115,7 +114,7 @@ TARGET_RECOVERY_DEVICE_MODULES := libinit_a16
 
 # Kernel
 BOARD_KERNEL_BASE := 0x80000000
-BOARD_KERNEL_CMDLINE := androidboot.console=ttyHSL0 androidboot.hardware=qcom ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci vmalloc=400m androidboot.selinux=permissive
+BOARD_KERNEL_CMDLINE := androidboot.console=ttyHSL0 androidboot.hardware=a16 ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci vmalloc=400m androidboot.selinux=permissive
 BOARD_KERNEL_IMAGE_NAME := zImage
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_SEPARATED_DT := true

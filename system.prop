@@ -87,10 +87,6 @@ ro.frp.pst=/dev/block/bootdevice/by-name/frp
 
 # FM Transmitter
 ro.fm.transmitter=false
-hw.fm.mode=normal
-hw.fm.version=iris
-hw.fm.isAnalog=false
-service.qct.fm.rssi=116
 
 # GPS
 ro.gps.agps_provider=1

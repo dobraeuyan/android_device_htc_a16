@@ -119,22 +119,17 @@ PRODUCT_PACKAGES += \
     libinit_msm8909
 
 PRODUCT_PACKAGES += \
-    fstab.qcom \
+    fstab.a16 \
     init.class_main.sh \
-    init.power.rc \
-    init.qcom.class_core.sh \
-    init.qcom.early_boot.sh \
-    init.qcom.rc \
-    init.qcom.sh \
-    init.qcom.usb.rc \
-    init.recovery.common.rc \
-    init.recovery.htc_a16.rc \
-    ueventd.qcom.rc
+    init.a16.class_core.sh \
+    init.a16.early_boot.sh \
+    init.a16.rc \
+    init.a16.sh \
+    init.a16.usb.rc \
+    ueventd.a16.rc
 
 PRODUCT_PACKAGES += \
-    init.qcom.bt.sh \
-    init.qcom.fm.sh \
-    init.qcom.post_boot.sh
+    init.a16.post_boot.sh
 
 # IRSC
 PRODUCT_COPY_FILES += \

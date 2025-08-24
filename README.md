@@ -13,7 +13,7 @@ Memory  | 1.5 GB (LPDDR3)
 Shipped Android Version | 6.0.1
 Storage | 16 GB
 MicroSD | Up to 200 GB
-Battery | Li-Ion 2200 mAh (non-removable)
+Battery | Li-Ion 2000 mAh (non-removable)
 Display | 1280x720 pixels, 5 inches (~300 PPI density)
 Rear Camera  | 8 MP
 Front Camera | 5 MP
@@ -32,7 +32,7 @@ Front Camera | 5 MP
 | **Bluetooth**             | :heavy_check_mark: |
 | **GPS**                   | :heavy_check_mark: |
 | **Camera Photos**         | :heavy_check_mark: |
-| **Videocamera**           | |
+| **Videocamera**           | :heavy_check_mark: |
 | **Audio**                 | :heavy_check_mark: |
 | **Jack**                  | :heavy_check_mark: |
 | **Microphone**            | :heavy_check_mark: |

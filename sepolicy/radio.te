@@ -1,2 +1,0 @@
-allow rild radio_data_file:dir { search create write add_name remove_name rmdir open read };
-allow rild radio_data_file:file { create read write open getattr lock unlink setattr };

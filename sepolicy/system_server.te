@@ -1,1 +1,5 @@
-allow system_server sensors_device:chr_file { read write open ioctl };
+# Definir un tipo para el nodo sysfs de Tap-to-Wake
+type sysfs_dt2w, fs_type, sysfs_type;
+
+# Permitir a system_server leer y escribir en el nodo DT2W
+allow system_server sysfs_dt2w:file rw_file_perms;

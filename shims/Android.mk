@@ -20,3 +20,22 @@ LOCAL_MODULE := liblog_htc
 LOCAL_MODULE_TAGS := optional
 LOCAL_MODULE_CLASS := SHARED_LIBRARIES
 include $(BUILD_SHARED_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_SRC_FILES := camera_shim.cpp
+LOCAL_MODULE := camera.msm8909
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_CLASS := SHARED_LIBRARIES
+LOCAL_MULTILIB := 32
+LOCAL_MODULE_RELATIVE_PATH := hw
+LOCAL_CFLAGS := -Werror -Wno-unused-parameter -Wno-missing-field-initializers
+LOCAL_SHARED_LIBRARIES := \
+    liblog \
+    libcutils \
+    libutils \
+    libhardware \
+    libcamera_client
+LOCAL_C_INCLUDES += \
+    system/media/camera/include \
+    hardware/libhardware/include
+include $(BUILD_SHARED_LIBRARY)

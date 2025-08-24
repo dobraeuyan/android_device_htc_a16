@@ -1,0 +1,5 @@
+# Permitir a vm_bms gestionar su cgroup
+allow vm_bms cgroup:dir { add_name create };
+
+# Permitir a vm_bms escribir en el log principal
+allow vm_bms log_device:chr_file { open write };

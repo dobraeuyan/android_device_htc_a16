@@ -1,0 +1,2 @@
+# Permitir a vold acceder y gestionar la partición /carrier
+allow vold radio_data_file:dir { read open ioctl };

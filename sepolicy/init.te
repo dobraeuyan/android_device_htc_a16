@@ -1,3 +1,6 @@
-allow init debugfs:dir mounton;
-allow init firmware_file:dir search;
-allow init firmware_file:file { read open getattr };
+# Permitir a init asociar /firmware
+allow init rootfs:filesystem associate;
+
+# Permitir a init leer la partición de firmware (formateada como vfat)
+allow init vfat:dir search;
+allow init vfat:file { read open getattr };
