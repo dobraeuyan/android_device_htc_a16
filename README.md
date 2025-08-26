@@ -48,5 +48,5 @@ Front Camera | 5 MP
 | **Thermal**               | :heavy_check_mark: |
 | **FM Radio**              | :heavy_check_mark: |
 | **NFC**                   | :heavy_check_mark: |
-| **SELinux enforced**      | |
+| **SELinux enforced**      | :heavy_check_mark: |
 

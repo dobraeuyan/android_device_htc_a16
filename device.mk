@@ -1,7 +1,5 @@
 DEVICE_PACKAGE_OVERLAYS := $(LOCAL_PATH)/overlay
 
-$(call inherit-product, frameworks/native/build/phone-hdpi-2048-dalvik-heap.mk)
-
 PRODUCT_CHARACTERISTICS := phone
 
 # Android filesystem
@@ -71,9 +69,9 @@ PRODUCT_COPY_FILES += \
     
 # Dalvik properties
 PRODUCT_PROPERTY_OVERRIDES += \
-    dalvik.vm.heapsize=512m \
+    dalvik.vm.heapsize=192m \
     dalvik.vm.heapstartsize=8m \
-    dalvik.vm.heapgrowthlimit=192m \
+    dalvik.vm.heapgrowthlimit=128m \
     dalvik.vm.heaptargetutilization=0.75 \
     dalvik.vm.heapminfree=512k \
     dalvik.vm.heapmaxfree=8m
@@ -120,16 +118,9 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     fstab.a16 \
-    init.class_main.sh \
-    init.a16.class_core.sh \
-    init.a16.early_boot.sh \
     init.a16.rc \
-    init.a16.sh \
     init.a16.usb.rc \
     ueventd.a16.rc
-
-PRODUCT_PACKAGES += \
-    init.a16.post_boot.sh
 
 # IRSC
 PRODUCT_COPY_FILES += \

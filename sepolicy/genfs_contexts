@@ -1,0 +1,5 @@
+# Label for /proc/calibration to read WLAN/BT MAC address.
+genfscon	proc	/calibration			u:object_r:proc_calibration:s0
+
+# Label for BMS sysfs nodes to read battery status.
+genfscon	sysfs	/class/power_supply/bms		u:object_r:bms_sysfs:s0

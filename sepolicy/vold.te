@@ -1,2 +1,4 @@
-# Permitir a vold acceder y gestionar la partición /carrier
-allow vold radio_data_file:dir { read open ioctl };
+# Allow vold to scan custom partitions.
+allow vold radio_data_file:dir r_dir_perms;
+allow vold htc_log_file:dir r_dir_perms;
+allow vold htc_fatallog_file:dir r_dir_perms;

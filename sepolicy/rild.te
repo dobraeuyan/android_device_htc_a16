@@ -1,0 +1,2 @@
+# Allow rild to set radio properties.
+allow rild radio_prop:property_service set;

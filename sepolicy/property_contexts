@@ -1,3 +1,9 @@
+# HTC Properties
 htc.camera.			u:object_r:camera_prop:s0
+sys.under_silent_reset.		u:object_r:radio_prop:s0
+
+# Qualcomm Properties
 ctl.rmt				u:object_r:ctl_rmt_prop:s0
 ctl.rmt_storage			u:object_r:ctl_rmt_prop:s0
+ctl.rfs_access			u:object_r:ctl_default_prop:s0
+

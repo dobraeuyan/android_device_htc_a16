@@ -1,5 +1,9 @@
-# Permitir a vm_bms gestionar su cgroup
-allow vm_bms cgroup:dir { add_name create };
+# Allow vm_bms (battery manager) to read battery status.
+allow vm_bms bms_sysfs:lnk_file read;
 
-# Permitir a vm_bms escribir en el log principal
+# Allow vm_bms to write to the system logger.
+allow vm_bms log_device:dir search;
 allow vm_bms log_device:chr_file { open write };
+
+# Allow vm_bms to manage its cgroup.
+allow vm_bms cgroup:dir { add_name create };

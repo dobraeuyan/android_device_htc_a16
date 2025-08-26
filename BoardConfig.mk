@@ -94,10 +94,6 @@ BOARD_RECOVERYIMAGE_PARTITION_SIZE := 34603008
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 3500146688
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 10849598976
 
-TARGET_USERIMAGES_USE_EXT4 := true
-BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
-BOARD_PERSISTIMAGE_FILE_SYSTEM_TYPE := ext4
-
 # FM Radio
 TARGET_QCOM_NO_FM_FIRMWARE := true
 BOARD_HAVE_QCOM_FM := true
@@ -114,7 +110,7 @@ TARGET_RECOVERY_DEVICE_MODULES := libinit_a16
 
 # Kernel
 BOARD_KERNEL_BASE := 0x80000000
-BOARD_KERNEL_CMDLINE := androidboot.console=ttyHSL0 androidboot.hardware=a16 ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci vmalloc=400m androidboot.selinux=permissive
+BOARD_KERNEL_CMDLINE := androidboot.console=ttyHSL0 androidboot.hardware=a16 ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci vmalloc=400m
 BOARD_KERNEL_IMAGE_NAME := zImage
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_SEPARATED_DT := true

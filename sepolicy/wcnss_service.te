@@ -1,0 +1,2 @@
+# Allow wcnss_service to read calibration file for MAC address.
+allow wcnss_service proc_calibration:file r_file_perms;

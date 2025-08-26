@@ -1,2 +1,0 @@
-# Permitir al servicio WCNSS leer sus archivos de firmware
-allow wcnss_service firmware_file:lnk_file read;

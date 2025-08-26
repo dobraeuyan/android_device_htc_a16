@@ -1,9 +1,5 @@
-# Permitir a mediaserver encontrar el servicio de sensores
-allow mediaserver sensorservice_service:service_manager find;
-
-# Permitir comunicación vía Binder entre mediaserver y system_server
-# La macro binder_call es la forma correcta y segura de permitir esta interacción
-binder_call(mediaserver, system_server)
-
-# Permitir a mediaserver usar sockets unix para comunicarse con system_server
+# Allow mediaserver to communicate with system_server.
 allow mediaserver system_server:unix_stream_socket { read write };
+
+# Allow mediaserver to find the sensor service for camera orientation.
+allow mediaserver sensorservice_service:service_manager find;

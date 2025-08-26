@@ -1,6 +1,7 @@
-# Permitir a init asociar /firmware
-allow init rootfs:filesystem associate;
+# Allow init to perform boot-time tasks.
+allow init bms_sysfs:lnk_file read;
+allow init rootfs:dir relabelfrom;
+allow init misc_partition:blk_file write;
 
-# Permitir a init leer la partición de firmware (formateada como vfat)
-allow init vfat:dir search;
-allow init vfat:file { read open getattr };
+# Allow init to associate filesystems on mount.
+allow firmware_file rootfs:filesystem associate;

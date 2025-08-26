@@ -1,2 +1,18 @@
-# persist 
-type persist_misc_file, file_type;
+# Custom device node types
+type htc_device, dev_type;
+type htc_batt_device, dev_type;
+
+# Procfs types
+type proc_calibration, fs_type;
+
+# Sysfs types
+type touchpanel_sysfs, fs_type, sysfs_type;
+type bms_sysfs, fs_type, sysfs_type;
+type bt_mac_sysfs, fs_type, sysfs_type;
+
+# Persist types
+type persist_misc_file, file_type, data_file_type;
+
+# Root dir file types
+type htc_log_file, file_type, data_file_type;
+type htc_fatallog_file, file_type, data_file_type;

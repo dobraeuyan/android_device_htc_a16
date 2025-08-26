@@ -1,0 +1,2 @@
+# Allow healthd to read battery status from sysfs.
+allow healthd bms_sysfs:lnk_file read;

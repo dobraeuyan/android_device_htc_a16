@@ -1,0 +1,2 @@
+# Allow bluetooth to read MAC address from sysfs.
+allow bluetooth bt_mac_sysfs:file { read open getattr };
