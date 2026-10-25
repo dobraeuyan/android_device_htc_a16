@@ -1,0 +1,14 @@
+ro.sf.lcd_density=290
+
+ro.baseband.arch=msm
+
+ro.vendor.vm_bms.enabled=1
+
+ro.frp.pst=/dev/block/bootdevice/by-name/frp
+
+ro.bt.bdaddr_path=/sys/module/htc_bdaddress/parameters/bdaddress
+
+ro.qc.sdk.audio.fluencetype=none
+persist.audio.fluence.voicecall=true
+persist.audio.fluence.voicerec=false
+persist.audio.fluence.speaker=true

@@ -1,0 +1,38 @@
+-include device/qcom/msm8909-common/BoardConfigCommon.mk
+
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/htc/a16/bluetooth
+
+BOARD_SYSTEMIMAGE_PARTITION_SIZE := 3500146688
+BOARD_VENDORIMAGE_PARTITION_SIZE := 200278016
+BOARD_USERDATAIMAGE_PARTITION_SIZE := 10849598976
+BOARD_CACHEIMAGE_PARTITION_SIZE := 200278016
+BOARD_PERSISTIMAGE_PARTITION_SIZE := 524288
+BOARD_RECOVERYIMAGE_PARTITION_SIZE := 34603008
+
+TARGET_KERNEL_ADDITIONAL_CONFIG := lineage_a16_defconfig
+BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
+
+TARGET_TAP_TO_WAKE_NODE := "/sys/android_touch/SMWP"
+
+BOARD_NFC_CHIPSET := pn548
+
+TARGET_LD_SHIM_LIBS += /vendor/bin/qseecomd|liblog_htc_shim.so
+
+TARGET_OTA_ASSERT_DEVICE := a16,a16wl,a16ul,a16dwgl,htc_a16,htc_a16wl,htc_a16ul,htc_a16dwgl
+
+TARGET_VENDOR_PROP += device/htc/a16/vendor.prop
+TARGET_VENDOR_PROP += device/qcom/msm8909-common/ril.prop
+
+TARGET_RECOVERY_FSTAB := device/htc/a16/rootdir/etc/recovery.fstab
+
+TARGET_RECOVERY_DENSITY := hdpi
+
+BOARD_SEPOLICY_DIRS += device/htc/msm8909-common/sepolicy
+BOARD_SEPOLICY_DIRS += device/htc/a16/sepolicy
+
+TARGET_WCNSS_WLAN_NV_IN_PERSIST := false
+
+TARGET_USES_QCOM_WCNSS_QMI := true
+TARGET_PROVIDES_WCNSS_QMI := true
+
+BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x04000000 --tags_offset 0x02e00000 --board boot:0

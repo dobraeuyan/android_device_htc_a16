@@ -1,0 +1,5 @@
+/vendor/bin/htc-wifi-mac\.sh                u:object_r:qti_init_shell_exec:s0
+
+# ----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
+/dev/block/mmcblk0p33                       u:object_r:modem_efs_partition_device:s0

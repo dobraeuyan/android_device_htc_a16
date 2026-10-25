@@ -1,0 +1,79 @@
+on post-fs
+    chown system system /dev/block/mmcblk0p49
+    chmod 0660 /dev/block/mmcblk0p49
+
+    mkdir /mnt/vendor/fwlink 0771 system system
+    exec_start vendor.htc_fw_link
+    write /sys/module/firmware_class/parameters/path /mnt/vendor/fwlink
+
+    exec_start vendor.htc_wifi_mac
+
+    start vendor.qseecomd
+
+    start vendor.qsee-kmload
+
+on post-fs-data
+    mkdir /data/adbroot 0700 root root
+    write /data/adbroot/enabled 1
+
+on boot
+
+    chown system system /sys/android_touch/SMWP
+    chmod 0660 /sys/android_touch/SMWP
+
+    write /sys/class/kgsl/kgsl-3d0/max_pwrlevel 1
+    write /sys/class/kgsl/kgsl-3d0/default_pwrlevel 1
+
+    chown bluetooth bluetooth /sys/module/htc_bdaddress/parameters/bdaddress
+    chmod 0660 /sys/module/htc_bdaddress/parameters/bdaddress
+
+service vendor.htc_fw_link /vendor/bin/htc-fw-link.sh
+    class core
+    user root
+    group system
+    disabled
+    oneshot
+
+service vendor.htc_wifi_mac /vendor/bin/htc-wifi-mac.sh
+    class core
+    user root
+    group system
+    disabled
+    oneshot
+
+service vendor.rmt_storage /vendor/bin/rmt_storage_htc
+    class core
+    user root
+    shutdown critical
+    ioprio rt 0
+    setenv LD_PRELOAD /vendor/lib/liblog_htc_shim.so
+    override
+
+service vendor.netmgrd /vendor/bin/netmgrd
+    class main
+    setenv LD_LIBRARY_PATH /vendor/lib/htc-netmgr:/vendor/lib:/system/lib
+    setenv LD_PRELOAD /vendor/lib/liblog_htc_shim.so
+    override
+
+service ril-daemon /vendor/bin/hw/rild
+    class main
+    user radio
+    group radio cache inet misc audio log readproc wakelock
+    capabilities BLOCK_SUSPEND NET_ADMIN NET_RAW
+    setenv LD_PRELOAD /vendor/lib/liblog_htc_shim.so
+    override
+
+service vendor.sensors-hal-1-0 /vendor/bin/hw/android.hardware.sensors@1.0-service
+    class hal
+    user system
+    group system wakelock uhid input
+    capabilities BLOCK_SUSPEND
+    rlimit rtprio 10 10
+    override
+
+service vendor.qcamerasvr /vendor/bin/mm-qcamera-daemon
+    class late_start
+    user camera
+    group camera system inet input graphics
+    setenv LD_PRELOAD /vendor/lib/liblog_htc_shim.so
+    override
