@@ -10,6 +10,8 @@ etc/acdbdata/MTP/Speaker_cal.acdb:vendor/etc/acdbdata/MTP/Speaker_cal.acdb
 
 # ============================================================================
 # ============================================================================
+etc/media_profiles.xml:vendor/etc/media_profiles.xml
+etc/media_profiles.xml:vendor/etc/media_profiles_V1_0.xml
 lib/hw/camera.msm8909.so:vendor/lib/hw/camera.vendor.msm8909.so
 
 # ============================================================================
