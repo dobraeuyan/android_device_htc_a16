@@ -77,3 +77,9 @@ service vendor.qcamerasvr /vendor/bin/mm-qcamera-daemon
     group camera system inet input graphics
     setenv LD_PRELOAD /vendor/lib/liblog_htc_shim.so
     override
+
+# The HAL caches camera_info at startup, but it queries sensor capabilities
+# before the late_start daemon can answer, leaving a garbage orientation that
+# Snap rejects. Restart it once boot is complete, when the daemon is ready.
+on property:sys.boot_completed=1
+    restart vendor.camera-provider-2-4
